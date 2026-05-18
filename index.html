@@ -1536,8 +1536,9 @@ window.addEventListener('scroll', () => {
   requestAnimationFrame(function render(ts){
     const t = ts * 0.001;
     gl.clear(gl.COLOR_BUFFER_BIT);
-    gl.uniform1f(U.time,    t);
-    gl.uniform1f(U.starSpd, t * STAR_SPEED / 10.0);
+    /* disableAnimation=true : étoiles figées */
+    gl.uniform1f(U.time,    1.0);
+    gl.uniform1f(U.starSpd, 0.07);
     gl.uniform2f(U.mouse,   0.5, 0.5);
     gl.uniform1f(U.mouseAct, 0.0);
     gl.drawArrays(gl.TRIANGLES, 0, 3);
