@@ -1,0 +1,382 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Politique de confidentialité — Ecommerce by Stella</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,600;0,700;1,400&family=Inter:wght@300;400;500;600&display=swap" rel="stylesheet">
+  <style>
+    :root {
+      --cream:     #F8F2F5;
+      --white:     #FFFFFF;
+      --rose:      #C4567E;
+      --rose-dark: #A03468;
+      --rose-pale: #F2C2D4;
+      --deep:      #14102A;
+      --plum:      #3A1A4A;
+      --mauve:     #9B6BBF;
+      --mid:       #5A4870;
+      --light:     #9B8AAE;
+    }
+
+    *, *::before, *::after { margin:0; padding:0; box-sizing:border-box; }
+    html { scroll-behavior: smooth; }
+
+    body {
+      font-family: 'Inter', sans-serif;
+      background: var(--cream);
+      color: var(--deep);
+    }
+
+    /* NAV */
+    nav {
+      background: var(--deep);
+      padding: 22px 72px;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+    }
+
+    .logo {
+      font-family: 'Playfair Display', serif;
+      font-size: 20px; font-weight: 700;
+      color: #fff; text-decoration: none;
+    }
+    .logo em { font-style: italic; color: var(--rose); }
+
+    .back-link {
+      font-size: 12px; font-weight: 500;
+      letter-spacing: 1.8px; text-transform: uppercase;
+      color: rgba(255,255,255,.6); text-decoration: none;
+      transition: color .3s;
+    }
+    .back-link:hover { color: var(--rose); }
+
+    /* HERO BAND */
+    .page-hero {
+      background: linear-gradient(135deg, var(--deep) 0%, var(--plum) 100%);
+      padding: 90px 80px 80px;
+      position: relative;
+      overflow: hidden;
+    }
+    .page-hero::after {
+      content: '';
+      position: absolute;
+      width: 500px; height: 500px;
+      border-radius: 50%;
+      background: radial-gradient(circle, rgba(196,86,126,.15) 0%, transparent 70%);
+      top: -150px; right: -100px;
+      pointer-events: none;
+    }
+
+    .page-hero-inner { max-width: 760px; position: relative; z-index: 1; }
+
+    .overline {
+      font-size: 10px; font-weight: 600; letter-spacing: 4px;
+      text-transform: uppercase; color: var(--rose);
+      margin-bottom: 16px; display: block;
+    }
+
+    .page-title {
+      font-family: 'Playfair Display', serif;
+      font-size: clamp(36px, 5vw, 62px);
+      font-weight: 700; line-height: 1.1; color: #fff;
+      margin-bottom: 20px;
+    }
+    .page-title em { font-style: italic; color: var(--rose); }
+
+    .page-subtitle {
+      font-size: 15px; color: rgba(255,255,255,.55);
+      line-height: 1.7;
+    }
+
+    /* CONTENT */
+    .content-wrap {
+      max-width: 820px;
+      margin: 0 auto;
+      padding: 80px 40px 120px;
+    }
+
+    .rule { width: 48px; height: 2px; background: var(--rose); margin: 0 0 48px; }
+
+    .update-badge {
+      display: inline-flex; align-items: center; gap: 8px;
+      background: rgba(196,86,126,.1);
+      border: 1px solid rgba(196,86,126,.25);
+      color: var(--rose);
+      font-size: 11px; font-weight: 600; letter-spacing: 1.5px;
+      text-transform: uppercase;
+      padding: 8px 18px; border-radius: 100px;
+      margin-bottom: 52px;
+    }
+
+    .article {
+      margin-bottom: 52px;
+    }
+
+    .article-num {
+      font-size: 10px; font-weight: 600; letter-spacing: 3px;
+      text-transform: uppercase; color: var(--rose); margin-bottom: 10px;
+    }
+
+    .article h2 {
+      font-family: 'Playfair Display', serif;
+      font-size: 24px; font-weight: 600; color: var(--deep);
+      margin-bottom: 18px; line-height: 1.2;
+    }
+
+    .article p {
+      font-size: 15px; line-height: 1.85; color: var(--mid);
+      margin-bottom: 14px;
+    }
+
+    .article p:last-child { margin-bottom: 0; }
+
+    .article ul {
+      list-style: none; margin: 14px 0;
+    }
+
+    .article ul li {
+      font-size: 15px; line-height: 1.8; color: var(--mid);
+      padding: 8px 0;
+      border-bottom: 1px solid rgba(0,0,0,.05);
+      display: flex; gap: 10px; align-items: flex-start;
+    }
+
+    .article ul li::before {
+      content: '✦'; color: var(--rose); font-size: 9px; margin-top: 5px; flex-shrink: 0;
+    }
+
+    .separator {
+      height: 1px;
+      background: linear-gradient(90deg, var(--rose-pale), transparent);
+      margin: 52px 0;
+    }
+
+    .highlight-box {
+      background: var(--white);
+      border-left: 3px solid var(--rose);
+      border-radius: 0 16px 16px 0;
+      padding: 28px 32px;
+      margin: 24px 0;
+    }
+
+    .highlight-box p {
+      font-size: 15px; line-height: 1.8; color: var(--mid); margin: 0;
+    }
+
+    .contact-box {
+      background: linear-gradient(135deg, var(--deep), var(--plum));
+      border-radius: 24px;
+      padding: 52px 48px;
+      text-align: center;
+      margin-top: 64px;
+    }
+
+    .contact-box h3 {
+      font-family: 'Playfair Display', serif;
+      font-size: 28px; font-weight: 700; color: #fff;
+      margin-bottom: 14px;
+    }
+
+    .contact-box p {
+      font-size: 15px; color: rgba(255,255,255,.58); margin-bottom: 28px; line-height: 1.7;
+    }
+
+    .contact-box a {
+      display: inline-block;
+      background: var(--rose);
+      color: #fff;
+      padding: 14px 36px;
+      border-radius: 100px;
+      font-size: 12px; font-weight: 600;
+      letter-spacing: 1.8px; text-transform: uppercase;
+      text-decoration: none;
+      transition: background .3s;
+    }
+    .contact-box a:hover { background: var(--rose-dark); }
+
+    /* FOOTER */
+    footer {
+      background: var(--deep);
+      padding: 36px 72px;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      font-size: 12.5px;
+      color: rgba(255,255,255,.25);
+    }
+
+    footer a { color: var(--rose); text-decoration: none; }
+
+    @media (max-width: 768px) {
+      nav, footer { padding: 20px 28px; }
+      .page-hero { padding: 60px 28px; }
+      .content-wrap { padding: 52px 24px 80px; }
+      footer { flex-direction: column; gap: 10px; text-align: center; }
+    }
+  </style>
+</head>
+<body>
+
+<nav>
+  <a href="digitalbystella.html" class="logo">Digital <em>by</em> Stella</a>
+  <a href="digitalbystella.html" class="back-link">← Retour au site</a>
+</nav>
+
+<div class="page-hero">
+  <div class="page-hero-inner">
+    <span class="overline">Légal</span>
+    <h1 class="page-title">Politique de<br><em>confidentialité</em></h1>
+    <p class="page-subtitle">Ecommerce by Stella s'engage à protéger vos données personnelles<br>et à respecter votre vie privée.</p>
+  </div>
+</div>
+
+<div class="content-wrap">
+
+  <div class="rule"></div>
+
+  <div class="update-badge">✦ Dernière mise à jour : 18 mai 2026</div>
+
+  <!-- Article 1 -->
+  <div class="article">
+    <p class="article-num">Article 1</p>
+    <h2>Identité du responsable de traitement</h2>
+    <p>La présente politique de confidentialité s'applique au site <strong>digitalbystella.html</strong> exploité par :</p>
+    <div class="highlight-box">
+      <p>
+        <strong>Ecommerce by Stella</strong><br>
+        Responsable : Stella<br>
+        Email : <a href="mailto:stella.web@yahoo.com" style="color:var(--rose);text-decoration:none">stella.web@yahoo.com</a>
+      </p>
+    </div>
+  </div>
+
+  <div class="separator"></div>
+
+  <!-- Article 2 -->
+  <div class="article">
+    <p class="article-num">Article 2</p>
+    <h2>Données collectées</h2>
+    <p>Dans le cadre de l'utilisation de ce site et du formulaire de contact, les données suivantes peuvent être collectées :</p>
+    <ul>
+      <li>Votre nom et prénom</li>
+      <li>Votre adresse email</li>
+      <li>Le type de prestation souhaitée</li>
+      <li>Le contenu de votre message</li>
+    </ul>
+    <p>Aucune donnée bancaire ou sensible n'est collectée directement via ce site.</p>
+  </div>
+
+  <div class="separator"></div>
+
+  <!-- Article 3 -->
+  <div class="article">
+    <p class="article-num">Article 3</p>
+    <h2>Finalités du traitement</h2>
+    <p>Les données collectées via le formulaire de contact sont utilisées uniquement pour :</p>
+    <ul>
+      <li>Répondre à vos demandes de devis ou d'informations</li>
+      <li>Vous contacter dans le cadre d'une prestation en cours</li>
+      <li>Vous transmettre les documents contractuels (devis PDF, factures)</li>
+    </ul>
+    <p>Vos données ne sont jamais utilisées à des fins commerciales tiers, ni revendues à des partenaires.</p>
+  </div>
+
+  <div class="separator"></div>
+
+  <!-- Article 4 -->
+  <div class="article">
+    <p class="article-num">Article 4</p>
+    <h2>Base légale du traitement</h2>
+    <p>Le traitement de vos données repose sur votre <strong>consentement explicite</strong> lorsque vous remplissez le formulaire de contact, ainsi que sur l'<strong>intérêt légitime</strong> d'Ecommerce by Stella dans le cadre de la relation commerciale.</p>
+  </div>
+
+  <div class="separator"></div>
+
+  <!-- Article 5 -->
+  <div class="article">
+    <p class="article-num">Article 5</p>
+    <h2>Durée de conservation</h2>
+    <p>Vos données personnelles sont conservées pour la durée strictement nécessaire à la finalité pour laquelle elles ont été collectées :</p>
+    <ul>
+      <li>Données de contact : 3 ans à compter du dernier échange</li>
+      <li>Données de facturation : 10 ans conformément aux obligations légales comptables</li>
+    </ul>
+    <p>Au-delà de ces délais, vos données sont supprimées ou anonymisées.</p>
+  </div>
+
+  <div class="separator"></div>
+
+  <!-- Article 6 -->
+  <div class="article">
+    <p class="article-num">Article 6</p>
+    <h2>Partage des données</h2>
+    <p>Vos données personnelles ne sont partagées avec aucun tiers sans votre consentement. Elles peuvent néanmoins être transmises à des prestataires techniques (hébergement, messagerie) dans le cadre strict de l'exécution des services, soumis aux mêmes obligations de confidentialité.</p>
+  </div>
+
+  <div class="separator"></div>
+
+  <!-- Article 7 -->
+  <div class="article">
+    <p class="article-num">Article 7</p>
+    <h2>Vos droits</h2>
+    <p>Conformément au Règlement Général sur la Protection des Données (RGPD) et à la loi Informatique et Libertés, vous disposez des droits suivants sur vos données :</p>
+    <ul>
+      <li><strong>Droit d'accès</strong> — connaître les données vous concernant</li>
+      <li><strong>Droit de rectification</strong> — corriger des données inexactes</li>
+      <li><strong>Droit à l'effacement</strong> — demander la suppression de vos données</li>
+      <li><strong>Droit d'opposition</strong> — vous opposer au traitement de vos données</li>
+      <li><strong>Droit à la portabilité</strong> — recevoir vos données dans un format structuré</li>
+      <li><strong>Droit à la limitation</strong> — limiter le traitement dans certains cas</li>
+    </ul>
+    <p>Pour exercer ces droits, contactez-nous à l'adresse : <a href="mailto:stella.web@yahoo.com" style="color:var(--rose);text-decoration:none">stella.web@yahoo.com</a>. Nous nous engageons à répondre dans un délai d'un mois.</p>
+  </div>
+
+  <div class="separator"></div>
+
+  <!-- Article 8 -->
+  <div class="article">
+    <p class="article-num">Article 8</p>
+    <h2>Cookies</h2>
+    <p>Ce site n'utilise pas de cookies de tracking ou publicitaires. Aucune donnée de navigation n'est collectée à des fins d'analyse comportementale.</p>
+  </div>
+
+  <div class="separator"></div>
+
+  <!-- Article 9 -->
+  <div class="article">
+    <p class="article-num">Article 9</p>
+    <h2>Sécurité des données</h2>
+    <p>Des mesures techniques et organisationnelles appropriées sont mises en place pour protéger vos données contre toute perte, accès non autorisé, divulgation ou altération. Les échanges d'emails contenant vos données sont limités au strict nécessaire.</p>
+  </div>
+
+  <div class="separator"></div>
+
+  <!-- Article 10 -->
+  <div class="article">
+    <p class="article-num">Article 10</p>
+    <h2>Réclamation</h2>
+    <p>Si vous estimez que vos droits ne sont pas respectés, vous avez la possibilité d'introduire une réclamation auprès de la <strong>Commission Nationale de l'Informatique et des Libertés (CNIL)</strong> :</p>
+    <div class="highlight-box">
+      <p>CNIL — 3 Place de Fontenoy, TSA 80715, 75334 Paris Cedex 07<br>
+      Site : <a href="https://www.cnil.fr" style="color:var(--rose);text-decoration:none" target="_blank">www.cnil.fr</a></p>
+    </div>
+  </div>
+
+  <div class="contact-box">
+    <h3>Une question sur vos données ?</h3>
+    <p>Je suis là pour répondre à toutes vos questions concernant la protection de vos données personnelles.</p>
+    <a href="mailto:stella.web@yahoo.com">stella.web@yahoo.com</a>
+  </div>
+
+</div>
+
+<footer>
+  <span>© 2026 | Ecommerce By Stella !</span>
+  <span><a href="digitalbystella.html">Retour au site</a></span>
+</footer>
+
+</body>
+</html>

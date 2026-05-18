@@ -1,0 +1,1989 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Digital by Stella — Sites WordPress & E-commerce</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,600;0,700;1,400;1,700&family=Inter:wght@300;400;500;600&display=swap" rel="stylesheet">
+  <style>
+    :root {
+      --cream:     #130D24;
+      --white:     #1A1135;
+      --gold:      #C4567E;
+      --gold-dark: #A03468;
+      --gold-pale: #F2C2D4;
+      --deep:      #0D0820;
+      --navy:      #110D28;
+      --plum:      #2E1442;
+      --mauve:     #9B6BBF;
+      --mid:       #C8B8E0;
+      --light:     #9B8AAE;
+      --text-on-dark: rgba(255,255,255,.75);
+    }
+
+    *, *::before, *::after { margin:0; padding:0; box-sizing:border-box; }
+    html { scroll-behavior:smooth; }
+
+    body {
+      font-family: 'Inter', sans-serif;
+      background: var(--cream);
+      color: var(--deep);
+      overflow-x: hidden;
+    }
+
+    /* ═══ NAV ══════════════════════════════════════ */
+    nav {
+      position: fixed;
+      inset: 0 0 auto 0;
+      z-index: 900;
+      padding: 30px 72px;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      transition: padding .4s ease, background .4s ease, box-shadow .4s ease;
+    }
+    nav.solid {
+      background: rgba(13,8,32,.88);
+      backdrop-filter: blur(20px);
+      -webkit-backdrop-filter: blur(20px);
+      padding: 18px 72px;
+      box-shadow: 0 1px 0 rgba(196,86,126,.15);
+    }
+    .logo {
+      font-family: 'Playfair Display', serif;
+      font-size: 21px;
+      font-weight: 700;
+      color: #fff;
+      text-decoration: none;
+      letter-spacing: .3px;
+      transition: color .4s;
+    }
+    nav.solid .logo { color: #fff; }
+    .logo em { font-style: italic; color: var(--gold); }
+
+    .nav-links { display: flex; align-items: center; gap: 38px; list-style: none; }
+    .nav-links a {
+      font-size: 11px;
+      font-weight: 500;
+      letter-spacing: 2px;
+      text-transform: uppercase;
+      color: rgba(255,255,255,.78);
+      text-decoration: none;
+      transition: color .3s;
+    }
+    nav.solid .nav-links a { color: rgba(255,255,255,.75); }
+    .nav-links a:hover { color: var(--gold) !important; }
+    .nav-pill {
+      background: var(--gold) !important;
+      color: #fff !important;
+      padding: 10px 28px;
+      border-radius: 100px;
+      font-weight: 600 !important;
+      transition: background .3s, box-shadow .3s !important;
+    }
+    .nav-pill:hover {
+      background: var(--gold-dark) !important;
+      box-shadow: 0 8px 24px rgba(168,136,58,.35) !important;
+    }
+
+    /* ═══ HERO ══════════════════════════════════════ */
+    #hero {
+      position: relative;
+      height: 100vh;
+      min-height: 640px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      overflow: hidden;
+    }
+
+    #heroVideo {
+      position: absolute;
+      inset: 0;
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      object-position: center top;
+      clip-path: inset(0 0 10% 0);
+    }
+
+    .hero-overlay {
+      position: absolute;
+      inset: 0;
+      background:
+        linear-gradient(to bottom,
+          rgba(20,20,42,.48) 0%,
+          rgba(20,20,42,.28) 45%,
+          rgba(20,20,42,.72) 100%);
+    }
+
+    .hero-content {
+      position: relative;
+      z-index: 2;
+      text-align: center;
+      color: #fff;
+      padding: 0 24px;
+      max-width: 860px;
+    }
+
+    .hero-tag {
+      display: inline-flex;
+      align-items: center;
+      gap: 10px;
+      font-size: 10px;
+      font-weight: 600;
+      letter-spacing: 3.5px;
+      text-transform: uppercase;
+      color: var(--gold);
+      border: 1px solid rgba(196,164,107,.38);
+      padding: 9px 24px;
+      border-radius: 100px;
+      margin-bottom: 38px;
+      opacity: 0;
+      animation: up .9s ease .15s forwards;
+    }
+
+    .hero-h1 {
+      font-family: 'Playfair Display', serif;
+      font-size: clamp(42px, 6.5vw, 82px);
+      font-weight: 700;
+      line-height: 1.08;
+      margin-bottom: 30px;
+      opacity: 0;
+      animation: up .9s ease .45s forwards;
+    }
+    .hero-h1 em { font-style: italic; color: var(--gold); }
+
+    .hero-p {
+      font-size: clamp(16px, 2vw, 19px);
+      font-weight: 300;
+      line-height: 1.78;
+      color: rgba(255,255,255,.82);
+      max-width: 580px;
+      margin: 0 auto 52px;
+      opacity: 0;
+      animation: up .9s ease .75s forwards;
+    }
+
+    .hero-btns {
+      display: flex;
+      gap: 14px;
+      justify-content: center;
+      opacity: 0;
+      animation: up .9s ease 1.05s forwards;
+    }
+
+    .btn-gold {
+      background: var(--gold);
+      color: #fff;
+      padding: 17px 44px;
+      border-radius: 100px;
+      font-size: 11.5px;
+      font-weight: 600;
+      letter-spacing: 2px;
+      text-transform: uppercase;
+      text-decoration: none;
+      transition: background .3s, transform .3s, box-shadow .3s;
+    }
+    .btn-gold:hover {
+      background: var(--gold-dark);
+      transform: translateY(-3px);
+      box-shadow: 0 18px 50px rgba(168,136,58,.38);
+    }
+
+    .btn-line {
+      border: 1px solid rgba(255,255,255,.42);
+      color: #fff;
+      padding: 17px 44px;
+      border-radius: 100px;
+      font-size: 11.5px;
+      font-weight: 500;
+      letter-spacing: 2px;
+      text-transform: uppercase;
+      text-decoration: none;
+      transition: border-color .3s, background .3s;
+    }
+    .btn-line:hover { border-color: #fff; background: rgba(255,255,255,.1); }
+
+    .hero-caret {
+      position: absolute;
+      bottom: 38px; left: 50%;
+      transform: translateX(-50%);
+      z-index: 2;
+      display: flex; flex-direction: column; align-items: center; gap: 9px;
+      font-size: 9px; letter-spacing: 2.5px; text-transform: uppercase;
+      color: rgba(255,255,255,.42);
+      opacity: 0; animation: up 1s ease 1.5s forwards;
+    }
+    .caret-line {
+      width: 1px; height: 46px;
+      background: linear-gradient(to bottom, rgba(255,255,255,.55), transparent);
+      animation: breathe 2.4s ease infinite;
+    }
+    @keyframes breathe { 0%,100%{opacity:.3} 50%{opacity:1} }
+
+    /* ═══ MARQUEE ═══════════════════════════════════ */
+    .marquee-wrap {
+      background: var(--deep);
+      padding: 20px 0;
+      overflow: hidden;
+      white-space: nowrap;
+    }
+    .marquee-inner {
+      display: inline-block;
+      animation: marquee 30s linear infinite;
+      font-size: 10.5px; font-weight: 500; letter-spacing: 3px;
+      text-transform: uppercase; color: rgba(255,255,255,.38);
+    }
+    .marquee-inner b { color: var(--gold); margin: 0 28px; font-weight: 400; }
+    @keyframes marquee { from{transform:translateX(0)} to{transform:translateX(-50%)} }
+
+    /* ═══ LAYOUT HELPERS ══════════════════════════════ */
+    .section { padding: 130px 80px; }
+    .container { max-width: 1160px; margin: 0 auto; }
+
+    .overline {
+      font-size: 10px; font-weight: 600; letter-spacing: 4px;
+      text-transform: uppercase; color: var(--gold);
+      margin-bottom: 18px;
+    }
+    .h2 {
+      font-family: 'Playfair Display', serif;
+      font-size: clamp(36px, 4.5vw, 60px);
+      font-weight: 700; line-height: 1.1; color: #fff;
+    }
+    .h2 em { font-style: italic; color: var(--gold); }
+    .h2-white { color: #fff; }
+
+    .rule { width: 48px; height: 2px; background: var(--gold); margin: 22px 0; }
+    .rule-c { margin-left: auto; margin-right: auto; }
+
+    /* reveal */
+    .r {
+      opacity: 0; transform: translateY(36px);
+      transition: opacity .85s cubic-bezier(.16,1,.3,1), transform .85s cubic-bezier(.16,1,.3,1);
+    }
+    .r.v { opacity:1; transform:translateY(0); }
+    .d1 { transition-delay: .1s; }
+    .d2 { transition-delay: .22s; }
+    .d3 { transition-delay: .34s; }
+    .d4 { transition-delay: .46s; }
+
+    /* ═══ ABOUT ══════════════════════════════════════ */
+    #about {
+      background: var(--white);
+      display: flex;
+      justify-content: center;
+    }
+
+    .about-text .h2 { margin-bottom: 0; }
+
+    .about-text p {
+      font-size: 16px; line-height: 1.88; color: var(--text-on-dark);
+      margin-top: 20px;
+    }
+
+    .about-tags {
+      display: flex; flex-wrap: wrap; gap: 10px; margin-top: 34px;
+    }
+    .tag {
+      font-size: 12px; font-weight: 500; letter-spacing: .8px;
+      padding: 8px 20px; border-radius: 100px;
+      border: 1px solid rgba(196,86,126,.4);
+      color: var(--gold); background: rgba(196,86,126,.1);
+    }
+
+    .about-contact {
+      display: flex; align-items: center; gap: 14px;
+      margin-top: 40px;
+      padding: 20px 28px;
+      background: rgba(255,255,255,.06); border: 1px solid rgba(255,255,255,.1); border-radius: 16px;
+      font-size: 14px; color: var(--text-on-dark);
+    }
+    .about-contact strong { color: #fff; font-size: 15px; display: block; }
+    .about-contact a { color: var(--gold); text-decoration: none; }
+    .envelope {
+      width: 46px; height: 46px; border-radius: 12px;
+      background: var(--gold); display: flex; align-items: center; justify-content: center;
+      font-size: 20px; flex-shrink: 0;
+    }
+
+    /* ═══ VALUES STRIP ═══════════════════════════════ */
+    .values-strip {
+      background: var(--cream);
+      display: grid; grid-template-columns: repeat(3,1fr);
+    }
+    .value {
+      padding: 72px 52px;
+      border-right: 1px solid rgba(0,0,0,.07);
+      text-align: center;
+    }
+    .value:last-child { border-right: none; }
+    .value-icon { font-size: 36px; margin-bottom: 20px; }
+    .value-title {
+      font-family: 'Playfair Display', serif;
+      font-size: 21px; font-weight: 600; color: #fff;
+      margin-bottom: 12px;
+    }
+    .value-text { font-size: 14px; line-height: 1.8; color: var(--text-on-dark); }
+
+    /* ═══ SERVICES ═══════════════════════════════════ */
+    #services { background: var(--white); }
+
+    .services-head { text-align: center; margin-bottom: 80px; }
+
+    .svc-grid {
+      display: grid; grid-template-columns: repeat(3,1fr); gap: 26px;
+    }
+
+    .svc-card {
+      border: 1px solid rgba(255,255,255,.08);
+      border-radius: 28px;
+      padding: 54px 42px;
+      position: relative; overflow: hidden;
+      transition: transform .4s cubic-bezier(.16,1,.3,1), box-shadow .4s, border-color .4s;
+      background: rgba(255,255,255,.04);
+    }
+    .svc-card::before {
+      content: '';
+      position: absolute; inset: 0;
+      background: linear-gradient(145deg, rgba(196,164,107,.04), transparent);
+      opacity: 0; transition: opacity .4s;
+      pointer-events: none;
+    }
+    .svc-card:hover {
+      transform: translateY(-10px);
+      box-shadow: 0 36px 80px rgba(196,86,126,.2);
+      border-color: rgba(196,86,126,.5);
+    }
+    .svc-card:hover::before { opacity: 1; }
+
+    .svc-num {
+      font-family: 'Playfair Display', serif;
+      font-size: 72px; font-weight: 700;
+      color: rgba(196,164,107,.12); line-height: 1;
+      position: absolute; top: 28px; right: 32px;
+    }
+
+    .svc-icon {
+      font-size: 34px; margin-bottom: 28px;
+    }
+    .svc-title {
+      font-family: 'Playfair Display', serif;
+      font-size: 26px; font-weight: 600; color: #fff; margin-bottom: 16px;
+    }
+    .svc-price {
+      font-family: 'Playfair Display', serif;
+      font-size: 40px; font-weight: 700; color: var(--gold); margin-bottom: 20px; line-height: 1;
+    }
+    .svc-price span { font-size: 18px; font-weight: 400; color: var(--mid); }
+    .svc-desc { font-size: 15px; line-height: 1.8; color: var(--text-on-dark); }
+
+    .svc-list {
+      list-style: none; margin-top: 24px; margin-bottom: 36px;
+    }
+    .svc-list li {
+      display: flex; gap: 10px; align-items: flex-start;
+      font-size: 14px; color: var(--text-on-dark); padding: 9px 0;
+      border-bottom: 1px solid rgba(255,255,255,.07);
+    }
+    .svc-list li::before { content:'✦'; color: var(--gold); font-size:10px; margin-top:3px; flex-shrink:0; }
+
+    .svc-btn {
+      display: inline-flex; align-items: center; gap: 8px;
+      font-size: 11.5px; font-weight: 600; letter-spacing: 1.8px;
+      text-transform: uppercase; color: var(--gold);
+      text-decoration: none; transition: gap .3s;
+    }
+    .svc-btn:hover { gap: 14px; }
+
+    /* ═══ PROCESS ════════════════════════════════════ */
+    #process { background: var(--cream); }
+
+    .process-head { text-align: center; margin-bottom: 90px; }
+
+    .process-grid {
+      display: grid; grid-template-columns: repeat(4,1fr); gap: 20px;
+      position: relative;
+    }
+    .process-grid::after {
+      content: '';
+      position: absolute; top: 36px; left: 12%; right: 12%; height: 1px;
+      background: linear-gradient(90deg, transparent, var(--gold-pale), var(--mauve), transparent);
+    }
+
+    .step { text-align: center; padding: 0 16px; }
+
+    .step-circle {
+      width: 72px; height: 72px; border-radius: 50%;
+      border: 1.5px solid rgba(196,86,126,.4);
+      background: rgba(255,255,255,.05);
+      display: flex; align-items: center; justify-content: center;
+      margin: 0 auto 30px;
+      font-family: 'Playfair Display', serif;
+      font-size: 24px; font-weight: 700; color: var(--gold);
+      position: relative; z-index: 1;
+      transition: background .3s, box-shadow .3s;
+    }
+    .step:hover .step-circle {
+      background: var(--gold); color: #fff; border-color: var(--gold);
+      box-shadow: 0 0 0 8px rgba(196,164,107,.14);
+    }
+    .step-title {
+      font-family: 'Playfair Display', serif;
+      font-size: 19px; font-weight: 600; color: #fff; margin-bottom: 12px;
+    }
+    .step-text { font-size: 14px; line-height: 1.75; color: var(--text-on-dark); }
+
+    /* ═══ ENGAGEMENT BAND ════════════════════════════ */
+    .promesses-header {
+      background: var(--deep);
+      text-align: center;
+      padding: 80px 80px 0;
+      margin-bottom: 0;
+    }
+    .engage-band { margin-top: 0; }
+
+    .engage-band {
+      background: var(--deep);
+      display: grid; grid-template-columns: repeat(3,1fr);
+    }
+    .engage-item {
+      padding: 70px 50px;
+      border-right: 1px solid rgba(255,255,255,.07);
+      text-align: center;
+    }
+    .engage-item:last-child { border-right: none; }
+    .engage-icon { font-size: 40px; margin-bottom: 20px; }
+    .engage-title {
+      font-family: 'Playfair Display', serif;
+      font-size: 20px; font-weight: 600; color: #fff; margin-bottom: 12px;
+    }
+    .engage-text { font-size: 14px; line-height: 1.8; color: rgba(255,255,255,.48); }
+
+    /* ═══ CONTACT / CTA ══════════════════════════════ */
+    #contact { background: var(--white); }
+
+    .cta-box {
+      background: linear-gradient(135deg, var(--deep) 0%, var(--plum) 100%);
+      border-radius: 36px;
+      overflow: hidden;
+      display: grid; grid-template-columns: 1fr 1fr;
+    }
+
+    .cta-left {
+      padding: 100px 72px;
+      position: relative;
+    }
+    .cta-left::after {
+      content: '';
+      position: absolute; inset: 0;
+      background: radial-gradient(ellipse at 0% 100%, rgba(196,164,107,.15) 0%, transparent 60%);
+      pointer-events: none;
+    }
+    .cta-left .h2 { color: #fff; }
+    .cta-left .rule { background: var(--gold); }
+    .cta-left p {
+      font-size: 16px; line-height: 1.8; color: rgba(255,255,255,.62);
+      margin-top: 18px; margin-bottom: 44px;
+    }
+
+    .cta-right {
+      padding: 100px 72px;
+      background: rgba(255,255,255,.04);
+      display: flex; flex-direction: column; gap: 18px; justify-content: center;
+    }
+
+    .form-row { display: flex; flex-direction: column; gap: 7px; }
+    .form-label { font-size: 11px; font-weight: 600; letter-spacing: 1.5px; text-transform: uppercase; color: rgba(255,255,255,.55); }
+    .form-input {
+      background: rgba(255,255,255,.07);
+      border: 1px solid rgba(255,255,255,.12);
+      border-radius: 12px;
+      padding: 14px 18px;
+      font-family: 'Inter', sans-serif;
+      font-size: 14px; color: #fff;
+      outline: none; transition: border-color .3s;
+    }
+    .form-input::placeholder { color: rgba(255,255,255,.3); }
+    .form-input:focus { border-color: var(--gold); }
+
+    .form-select {
+      background: rgba(255,255,255,.07);
+      border: 1px solid rgba(255,255,255,.12);
+      border-radius: 12px;
+      padding: 14px 18px;
+      font-family: 'Inter', sans-serif;
+      font-size: 14px; color: rgba(255,255,255,.7);
+      outline: none; transition: border-color .3s;
+      cursor: pointer;
+    }
+    .form-select option { background: var(--navy); color: #fff; }
+    .form-select:focus { border-color: var(--gold); }
+
+    .form-textarea {
+      background: rgba(255,255,255,.07);
+      border: 1px solid rgba(255,255,255,.12);
+      border-radius: 12px;
+      padding: 14px 18px;
+      font-family: 'Inter', sans-serif;
+      font-size: 14px; color: #fff;
+      outline: none; transition: border-color .3s;
+      resize: vertical; min-height: 110px;
+    }
+    .form-textarea::placeholder { color: rgba(255,255,255,.3); }
+    .form-textarea:focus { border-color: var(--gold); }
+
+    .form-submit {
+      background: var(--gold);
+      color: #fff;
+      padding: 16px;
+      border: none; border-radius: 100px;
+      font-family: 'Inter', sans-serif;
+      font-size: 11.5px; font-weight: 600;
+      letter-spacing: 2px; text-transform: uppercase;
+      cursor: pointer; transition: background .3s, box-shadow .3s;
+      margin-top: 4px;
+    }
+    .form-submit:hover {
+      background: var(--gold-dark);
+      box-shadow: 0 14px 40px rgba(168,136,58,.38);
+    }
+
+    /* ═══ FOOTER ══════════════════════════════════════ */
+    footer {
+      background: var(--deep);
+      color: #fff;
+      padding: 88px 80px 44px;
+    }
+    .footer-top {
+      display: grid; grid-template-columns: 2fr 1fr 1fr; gap: 80px;
+      margin-bottom: 60px;
+    }
+    .footer-logo {
+      font-family: 'Playfair Display', serif;
+      font-size: 26px; font-weight: 700; margin-bottom: 16px;
+    }
+    .footer-logo em { font-style: italic; color: var(--gold); }
+    .footer-desc { font-size: 14px; line-height: 1.85; color: rgba(255,255,255,.42); max-width: 290px; }
+
+    .footer-mail {
+      display: inline-flex; align-items: center; gap: 8px;
+      margin-top: 24px; font-size: 13px; color: var(--gold);
+      text-decoration: none; transition: opacity .3s;
+    }
+    .footer-mail:hover { opacity: .75; }
+
+    .footer-h { font-size: 10px; font-weight: 600; letter-spacing: 2.5px; text-transform: uppercase; color: var(--gold); margin-bottom: 22px; }
+
+    .footer-ul { list-style: none; }
+    .footer-ul li { margin-bottom: 13px; }
+    .footer-ul a { font-size: 14px; color: rgba(255,255,255,.45); text-decoration: none; transition: color .3s; }
+    .footer-ul a:hover { color: var(--gold); }
+
+    .footer-bottom {
+      border-top: 1px solid rgba(255,255,255,.07);
+      padding-top: 32px; font-size: 12.5px;
+      display: flex; justify-content: space-between; align-items: center;
+      color: rgba(255,255,255,.25);
+    }
+
+    /* ═══ STATS BAND ═════════════════════════════════ */
+    .stats-band {
+      background: var(--white);
+      display: grid; grid-template-columns: repeat(3,1fr);
+      border-top: 1px solid rgba(0,0,0,.06);
+      border-bottom: 1px solid rgba(0,0,0,.06);
+    }
+    .stat-item {
+      padding: 80px 40px; text-align: center;
+      border-right: 1px solid rgba(0,0,0,.06);
+    }
+    .stat-item:last-child { border-right: none; }
+    .stat-num {
+      font-family: 'Playfair Display', serif;
+      font-size: 72px; font-weight: 700; color: var(--gold); line-height: 1;
+    }
+    .stat-label {
+      font-size: 12px; font-weight: 500; letter-spacing: 1.5px;
+      text-transform: uppercase; color: var(--mid); margin-top: 14px;
+    }
+
+    /* ═══ TÉMOIGNAGE ══════════════════════════════════ */
+    .testi-band {
+      background: var(--cream);
+      padding: 100px 80px;
+      text-align: center;
+    }
+    .testi-inner {
+      max-width: 760px; margin: 0 auto;
+    }
+    .testi-stars {
+      font-size: 22px; color: var(--gold); letter-spacing: 4px; margin-bottom: 32px;
+    }
+    .testi-quote {
+      font-family: 'Playfair Display', serif;
+      font-size: clamp(22px, 3vw, 34px); font-style: italic; font-weight: 400;
+      line-height: 1.6; color: var(--deep); margin-bottom: 28px;
+    }
+    .testi-meta {
+      font-size: 13px; font-weight: 500; letter-spacing: 2px;
+      text-transform: uppercase; color: var(--gold);
+    }
+
+    /* ═══ WALKING STELLA ══════════════════════════════ */
+    #walker {
+      position: fixed;
+      bottom: 0; left: 0;
+      z-index: 800;
+      pointer-events: none;
+      will-change: transform;
+    }
+    #walker svg { width: 68px; height: 144px; display: block; }
+
+    /* limb animations */
+    #wLL { transform-box:fill-box; transform-origin:50% 0; animation: wL .52s ease-in-out infinite; }
+    #wRL { transform-box:fill-box; transform-origin:50% 0; animation: wR .52s ease-in-out infinite; }
+    #wLA { transform-box:fill-box; transform-origin:100% 0; animation: aL .52s ease-in-out infinite; }
+    #wRA { transform-box:fill-box; transform-origin:0%   0; animation: aR .52s ease-in-out infinite; }
+    #wBody { animation: bob .52s ease-in-out infinite; }
+
+    @keyframes wL  { 0%,100%{transform:rotate(-23deg)} 50%{transform:rotate(23deg)} }
+    @keyframes wR  { 0%,100%{transform:rotate(23deg)}  50%{transform:rotate(-23deg)} }
+    @keyframes aL  { 0%,100%{transform:rotate(17deg)}  50%{transform:rotate(-17deg)} }
+    @keyframes aR  { 0%,100%{transform:rotate(-17deg)} 50%{transform:rotate(17deg)} }
+    @keyframes bob { 0%,100%{transform:translateY(0)}  50%{transform:translateY(-2.5px)} }
+
+    /* ═══ ANIMATIONS ══════════════════════════════════ */
+    @keyframes up {
+      from { opacity:0; transform:translateY(26px); }
+      to   { opacity:1; transform:translateY(0); }
+    }
+
+    /* ═══ DYNAMIC DARK BACKGROUND ════════════════════ */
+    @keyframes glowPulse {
+      0%,100% { box-shadow: inset 0 0 120px rgba(155,107,191,.12); }
+      50%      { box-shadow: inset 0 0 200px rgba(196,86,126,.22); }
+    }
+
+    /* Corps : fond très sombre (fallback si canvas non supporté) */
+    body {
+      background: #060310;
+    }
+
+    /* ═══ SECTIONS TRANSPARENTES — le canvas éclaire à travers ══ */
+    /* On passe tous les blocs en position relative z-index 1
+       pour qu'ils s'affichent AU-DESSUS du canvas (z-index 0) */
+    nav,
+    #hero,
+    .marquee-wrap,
+    #about,
+    .values-strip,
+    #services,
+    #process,
+    .promesses-header,
+    .engage-band,
+    #contact,
+    .stats-band,
+    .testi-band,
+    footer {
+      position: relative;
+      z-index: 1;
+    }
+
+    /* Sections principales : fond semi-transparent violet foncé */
+    #about,
+    #services,
+    #process,
+    #contact,
+    .stats-band {
+      background: rgba(26,17,53,.78) !important;
+    }
+
+    /* Values strip & testi : légèrement différencié */
+    .values-strip,
+    .testi-band {
+      background: rgba(19,13,36,.78) !important;
+    }
+
+    /* Sections très sombres : bande marquee, promesses, footer */
+    .marquee-wrap,
+    .promesses-header,
+    .engage-band,
+    footer {
+      background: rgba(8,4,20,.88) !important;
+      animation: glowPulse 4s ease infinite;
+    }
+
+    /* ═══ HAMBURGER ══════════════════════════════════ */
+    .burger {
+      display: none;
+      flex-direction: column;
+      gap: 5px;
+      cursor: pointer;
+      padding: 4px;
+      background: none;
+      border: none;
+    }
+    .burger span {
+      display: block;
+      width: 24px; height: 2px;
+      background: #fff;
+      border-radius: 2px;
+      transition: background .4s, transform .3s, opacity .3s;
+    }
+    nav.solid .burger span { background: var(--deep); }
+
+    .burger.open span:nth-child(1) { transform: translateY(7px) rotate(45deg); }
+    .burger.open span:nth-child(2) { opacity: 0; }
+    .burger.open span:nth-child(3) { transform: translateY(-7px) rotate(-45deg); }
+
+    .mobile-menu {
+      display: none;
+      position: fixed;
+      inset: 0;
+      background: var(--deep);
+      z-index: 850;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      gap: 36px;
+    }
+    .mobile-menu.open { display: flex; }
+    .mobile-menu a {
+      font-family: 'Playfair Display', serif;
+      font-size: 32px; font-weight: 700;
+      color: #fff; text-decoration: none;
+      transition: color .3s;
+    }
+    .mobile-menu a:hover, .mobile-menu a.active { color: var(--rose); }
+    .mobile-menu .close-btn {
+      position: absolute;
+      top: 28px; right: 28px;
+      font-size: 28px; color: rgba(255,255,255,.5);
+      cursor: pointer; background: none; border: none;
+      transition: color .3s;
+    }
+    .mobile-menu .close-btn:hover { color: var(--rose); }
+    .mobile-cta {
+      margin-top: 8px;
+      background: var(--rose) !important;
+      padding: 14px 40px;
+      border-radius: 100px;
+      font-family: 'Inter', sans-serif !important;
+      font-size: 13px !important;
+      font-weight: 600 !important;
+      letter-spacing: 1.5px;
+      text-transform: uppercase;
+    }
+
+    /* ═══ RESPONSIVE ══════════════════════════════════ */
+    @media (max-width:1060px) {
+      .svc-grid   { grid-template-columns:1fr 1fr; }
+      .footer-top { grid-template-columns:1fr 1fr; gap:48px; }
+    }
+
+    @media (max-width:780px) {
+      /* video — on mobile on recadre pour voir le geste */
+      #heroVideo {
+        object-position: 55% top;
+        clip-path: inset(0 0 6% 0);
+      }
+
+      /* nav */
+      nav  { padding: 18px 24px; }
+      nav.solid { padding: 14px 24px; }
+      .nav-links { display: none; }
+      .burger { display: flex; }
+
+      /* hero */
+      #hero { height: 100svh; }
+      .hero-tag { font-size: 9px; letter-spacing: 2.5px; padding: 7px 16px; }
+      .hero-h1  { font-size: 36px; line-height: 1.1; }
+      .hero-p   { font-size: 15px; margin-bottom: 36px; }
+      .hero-btns { flex-direction: column; align-items: center; gap: 12px; }
+      .btn-gold, .btn-line { padding: 15px 36px; font-size: 11px; }
+
+      /* sections */
+      .section { padding: 72px 24px; }
+      .container { padding: 0; }
+
+      /* about */
+      #about { padding: 72px 24px; }
+      .about-text p { font-size: 15px; }
+      .about-tags { gap: 8px; }
+      .tag { font-size: 11px; padding: 6px 14px; }
+      .about-contact { padding: 16px 20px; }
+
+      /* values */
+      .values-strip { grid-template-columns: 1fr; }
+      .value { border-right: none; border-bottom: 1px solid rgba(0,0,0,.07); padding: 52px 28px; }
+      .value:last-child { border-bottom: none; }
+
+      /* services */
+      .services-head { margin-bottom: 48px; }
+      .svc-grid { grid-template-columns: 1fr; gap: 18px; }
+      .svc-card { padding: 40px 28px; }
+      .svc-num { font-size: 52px; }
+      .svc-title { font-size: 22px; }
+      .svc-price { font-size: 32px; }
+
+      /* process */
+      .process-head { margin-bottom: 52px; }
+      .process-grid { grid-template-columns: 1fr 1fr; gap: 32px; }
+      .process-grid::after { display: none; }
+
+      /* promesses header */
+      .promesses-header { padding: 60px 24px 0; }
+      .engage-band > div:first-child { padding: 60px 24px 0 !important; }
+
+      /* engage band */
+      .engage-band { grid-template-columns: 1fr; }
+      .engage-item { border-right: none; border-bottom: 1px solid rgba(255,255,255,.07); padding: 52px 28px; }
+      .engage-item:last-child { border-bottom: none; }
+
+      /* contact form */
+      .cta-box { grid-template-columns: 1fr; border-radius: 24px; }
+      .cta-left  { padding: 52px 28px 36px; }
+      .cta-right { padding: 28px 28px 52px; }
+
+      /* footer */
+      footer { padding: 60px 24px 36px; }
+      .footer-top { grid-template-columns: 1fr; gap: 40px; }
+      .footer-bottom { flex-direction: column; gap: 10px; text-align: center; }
+
+      /* walker off on mobile */
+      #walker { display: none; }
+
+      /* marquee */
+      .marquee-inner { font-size: 9.5px; }
+    }
+
+    @media (max-width: 400px) {
+      .hero-h1 { font-size: 30px; }
+      .process-grid { grid-template-columns: 1fr; }
+    }
+  </style>
+</head>
+<body>
+
+<!-- ══ NAV ════════════════════════════════════════ -->
+<nav id="nav">
+  <a href="#" class="logo">Digital <em>by</em> Stella</a>
+  <ul class="nav-links">
+    <li><a href="#about">À propos</a></li>
+    <li><a href="#services">Services</a></li>
+    <li><a href="#process">Méthode</a></li>
+    <li><a href="#contact" class="nav-pill">Consultation gratuite</a></li>
+  </ul>
+  <button class="burger" id="burger" aria-label="Menu">
+    <span></span><span></span><span></span>
+  </button>
+</nav>
+
+<!-- ══ MOBILE MENU ══════════════════════════════════ -->
+<div class="mobile-menu" id="mobileMenu">
+  <button class="close-btn" id="closeMenu">✕</button>
+  <a href="#about"    onclick="closeMobileMenu()">À propos</a>
+  <a href="#services" onclick="closeMobileMenu()">Services</a>
+  <a href="#process"  onclick="closeMobileMenu()">Méthode</a>
+  <a href="#contact"  onclick="closeMobileMenu()" class="mobile-cta">Consultation gratuite</a>
+</div>
+
+<!-- ══ WALKER ══════════════════════════════════════ -->
+<div id="walker">
+  <svg viewBox="0 0 72 150" xmlns="http://www.w3.org/2000/svg">
+    <!-- shadow -->
+    <ellipse cx="36" cy="147" rx="20" ry="4" fill="rgba(0,0,0,.13)"/>
+
+    <!-- legs (drawn first, behind body) -->
+    <g id="wLL">
+      <line x1="31" y1="98" x2="23" y2="142" stroke="#3A1A4A" stroke-width="6.5" stroke-linecap="round"/>
+      <rect  x="18" y="137" width="3.5" height="9" rx="1.5" fill="#C4567E"/>
+      <ellipse cx="21" cy="146" rx="9" ry="4.5" fill="#14102A"/>
+    </g>
+    <g id="wRL">
+      <line x1="41" y1="98" x2="49" y2="142" stroke="#3A1A4A" stroke-width="6.5" stroke-linecap="round"/>
+      <rect  x="50" y="137" width="3.5" height="9" rx="1.5" fill="#C4567E"/>
+      <ellipse cx="51" cy="146" rx="9" ry="4.5" fill="#14102A"/>
+    </g>
+
+    <!-- body group -->
+    <g id="wBody">
+      <!-- hair back -->
+      <path d="M24 18 Q14 40 20 58" stroke="#5C2E10" stroke-width="7" fill="none" stroke-linecap="round"/>
+      <!-- head -->
+      <ellipse cx="36" cy="20" rx="15" ry="17" fill="#5C2E10"/>
+      <!-- face -->
+      <ellipse cx="37" cy="21" rx="11" ry="12" fill="#F0C8A8"/>
+      <!-- hair top -->
+      <path d="M23 13 Q36 4 49 13 Q47 26 36 24 Q25 26 23 13Z" fill="#5C2E10"/>
+      <!-- earring -->
+      <circle cx="26" cy="24" r="2.5" fill="#C4567E"/>
+      <!-- neck -->
+      <rect x="33" y="33" width="7" height="9" fill="#F0C8A8"/>
+      <!-- left arm -->
+      <g id="wLA">
+        <line x1="26" y1="52" x2="11" y2="76" stroke="#3A1A4A" stroke-width="6.5" stroke-linecap="round"/>
+        <!-- bag -->
+        <rect x="3" y="73" width="15" height="13" rx="4" fill="#C4567E"/>
+        <line x1="10.5" y1="73" x2="10.5" y2="66" stroke="#A03468" stroke-width="2"/>
+      </g>
+      <!-- body/dress -->
+      <path d="M24 40 Q36 36 48 40 L52 100 Q36 106 20 100 Z" fill="#3A1A4A"/>
+      <!-- waist belt -->
+      <path d="M23 58 Q36 62 49 58" stroke="#C4567E" stroke-width="2.5" fill="none" opacity=".85"/>
+      <!-- right arm -->
+      <g id="wRA">
+        <line x1="46" y1="52" x2="61" y2="76" stroke="#3A1A4A" stroke-width="6.5" stroke-linecap="round"/>
+      </g>
+    </g>
+  </svg>
+</div>
+
+<!-- ══ HERO ════════════════════════════════════════ -->
+<section id="hero">
+  <video id="heroVideo" autoplay muted loop playsinline>
+    <source src="kling_20260518_作品_donne_vie__1581_0.mp4" type="video/mp4">
+  </video>
+  <div class="hero-overlay"></div>
+  <div class="hero-content">
+    <div class="hero-tag">✦ Sites WordPress &amp; E-commerce sur-mesure</div>
+    <h1 class="hero-h1">obtenez votre site<br><em>WordPress</em><br>avec Stella</h1>
+    <p class="hero-p">
+      Transformez vos idées en succès en ligne avec un site WordPress optimisé,
+      moderne &amp; performant. Attirez vos clients et augmentez vos ventes dès aujourd'hui.
+    </p>
+    <div class="hero-btns">
+      <a href="#contact" class="btn-gold">Commencez maintenant</a>
+      <a href="#services" class="btn-line">Voir les offres</a>
+    </div>
+  </div>
+  <div class="hero-caret">
+    <div class="caret-line"></div>
+    Scroll
+  </div>
+</section>
+
+<!-- ══ MARQUEE ════════════════════════════════════ -->
+<div class="marquee-wrap">
+  <span class="marquee-inner">
+    Sites WordPress <b>✦</b> E-commerce <b>✦</b> Optimisation SEO <b>✦</b> Sites sur-mesure <b>✦</b> Sans templates <b>✦</b> Satisfaction garantie <b>✦</b> Accompagnement inclus <b>✦</b>
+    Sites WordPress <b>✦</b> E-commerce <b>✦</b> Optimisation SEO <b>✦</b> Sites sur-mesure <b>✦</b> Sans templates <b>✦</b> Satisfaction garantie <b>✦</b> Accompagnement inclus <b>✦</b>
+  </span>
+</div>
+
+<!-- ══ ABOUT ══════════════════════════════════════ -->
+<section id="about" class="section">
+  <div class="about-text" style="max-width:720px;margin:0 auto;">
+    <p class="overline r">À propos</p>
+    <h2 class="h2 r">Votre site, votre<br><em>identité</em></h2>
+    <div class="rule r"></div>
+    <p class="r">
+      Je suis Stella, créatrice de sites WordPress professionnels et boutiques e-commerce.
+      Mon engagement : chaque site est pensé et créé sur-mesure pour vous —
+      aucun template, aucun compromis.
+    </p>
+    <p class="r d1">
+      De la conception à la livraison, je vous accompagne pour que vous soyez
+      pleinement autonome sur votre site. Le projet ne se clôture qu'avec
+      votre satisfaction complète.
+    </p>
+    <div class="about-tags r d2">
+      <span class="tag">WordPress Expert</span>
+      <span class="tag">WooCommerce</span>
+      <span class="tag">SEO Technique</span>
+      <span class="tag">Design sur-mesure</span>
+      <span class="tag">Tunnel de vente</span>
+    </div>
+    <a href="#contact" class="about-contact r d3" style="text-decoration:none;display:flex;align-items:center;gap:14px;cursor:pointer;">
+      <div class="envelope">✉️</div>
+      <div>
+        <strong>Contactez-moi directement</strong>
+        <span style="color:var(--gold)">stella.web@yahoo.com</span>
+      </div>
+    </a>
+  </div>
+</section>
+
+<!-- ══ PROMESSES ══════════════════════════════════ -->
+<div class="values-strip">
+  <div class="value r">
+    <div class="value-icon">🤝</div>
+    <div class="value-title">Autonomie garantie</div>
+    <p class="value-text">Je t'accompagne après livraison pour que tu sois 100% autonome.</p>
+  </div>
+  <div class="value r d1">
+    <div class="value-icon">✦</div>
+    <div class="value-title">Zéro template recyclé</div>
+    <p class="value-text">Pas de template recyclé. Chaque site est pensé pour convertir.</p>
+  </div>
+  <div class="value r d2">
+    <div class="value-icon">✅</div>
+    <div class="value-title">100% satisfait ou on continue</div>
+    <p class="value-text">Le projet ne sera pas terminé avant que tu sois 100% satisfait.</p>
+  </div>
+</div>
+
+<!-- ══ SERVICES ═══════════════════════════════════ -->
+<section id="services" class="section">
+  <div class="services-head">
+    <p class="overline r">Mes prestations</p>
+    <h2 class="h2 r">Des solutions claires,<br>des <em>résultats concrets</em></h2>
+    <div class="rule rule-c r"></div>
+  </div>
+  <div class="container">
+    <div class="svc-grid">
+
+      <a href="#contact" class="svc-card r" style="display:block;text-decoration:none;cursor:pointer;">
+        <div class="svc-num">01</div>
+        <div class="svc-icon">🖥️</div>
+        <h3 class="svc-title">Création Site WordPress vitrine</h3>
+        <div class="svc-price">500€ <span>• tarif fixe</span></div>
+        <p class="svc-desc">Cette offre comprend la création d'un site professionnel adapté aux entreprises souhaitant développer leur visibilité, ou d'un site e-commerce monoproduit, idéal pour se lancer rapidement avec une offre claire. Vous bénéficiez d'une solution simple, efficace et pensée pour convertir vos visiteurs en clients.</p>
+        <span class="svc-btn" style="margin-top:32px">Je veux un site vitrine →</span>
+      </a>
+
+      <a href="#contact" class="svc-card r d1" style="display:block;text-decoration:none;cursor:pointer;">
+        <div class="svc-num">02</div>
+        <div class="svc-icon">🛒</div>
+        <h3 class="svc-title">Sites e-commerce</h3>
+        <div class="svc-price">À partir de 550€ <span>• sur devis</span></div>
+        <p class="svc-desc">Cette offre concerne les projets avec plusieurs produits et nécessite un devis, car chaque site est adapté en fonction du nombre de fiches produits et des besoins spécifiques. Chaque boutique est conçue avec : des fiches produits optimisées pour convaincre, une navigation fluide, un tunnel de vente structuré pour maximiser les conversions.</p>
+        <span class="svc-btn" style="margin-top:32px">Je veux un site e-commerce →</span>
+      </a>
+
+      <a href="#contact" class="svc-card r d2" style="display:block;text-decoration:none;cursor:pointer;">
+        <div class="svc-num">03</div>
+        <div class="svc-icon">🔍</div>
+        <h3 class="svc-title">Optimisations SEO</h3>
+        <div class="svc-price">150€ <span>• par site</span></div>
+        <p class="svc-desc">Cette offre comprend une optimisation complète des bases du site (structure, contenus, balises, cohérence globale) afin de le rendre plus performant et mieux positionné sur les moteurs de recherche.</p>
+        <span class="svc-btn" style="margin-top:32px">J'optimise mon SEO →</span>
+      </a>
+
+    </div>
+  </div>
+</section>
+
+<!-- ══ PROCESS ════════════════════════════════════ -->
+<section id="process" class="section">
+  <div class="container">
+    <div class="process-head">
+      <p class="overline r">Comment ça se passe</p>
+      <h2 class="h2 r">Un process simple,<br>des <em>résultats visibles</em></h2>
+      <div class="rule rule-c r"></div>
+    </div>
+    <div class="process-grid">
+      <div class="step r">
+        <div class="step-circle">01</div>
+        <h4 class="step-title">Consultation gratuite</h4>
+        <p class="step-text">On échange sur votre projet, vos besoins, vos objectifs. Aucun engagement, juste une conversation honnête.</p>
+      </div>
+      <div class="step r d1">
+        <div class="step-circle">02</div>
+        <h4 class="step-title">Devis en PDF</h4>
+        <p class="step-text">Je vous transmets un devis détaillé avec le descriptif précis de chaque prestation. Zéro surprise.</p>
+      </div>
+      <div class="step r d2">
+        <div class="step-circle">03</div>
+        <h4 class="step-title">Création sur-mesure</h4>
+        <p class="step-text">Je conçois votre site en partant de zéro — aucun template. Vous êtes impliquée à chaque étape clé.</p>
+      </div>
+      <div class="step r d3">
+        <div class="step-circle">04</div>
+        <h4 class="step-title">Livraison &amp; autonomie</h4>
+        <p class="step-text">À la livraison, je vous forme à la gestion de votre site. Le projet ne ferme qu'avec votre satisfaction totale.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ══ LES PROMESSES DU WEB DE STELLA ════════════ -->
+<div class="engage-band" style="display:block;">
+  <div style="text-align:center;padding:80px 80px 0;">
+    <p class="overline r" style="color:var(--gold-pale)">Les engagements</p>
+    <h2 class="h2 r" style="color:#fff">Les promesses du web<br><em>de Stella</em></h2>
+    <div class="rule rule-c r" style="background:var(--gold)"></div>
+  </div>
+  <div style="display:grid;grid-template-columns:repeat(3,1fr);">
+  <div class="engage-item r">
+    <div class="engage-icon">✨</div>
+    <div class="engage-title">Accompagnement post-livraison</div>
+    <p class="engage-text">Je t'accompagne après livraison pour que tu sois 100% autonome.</p>
+  </div>
+  <div class="engage-item r d1">
+    <div class="engage-icon">🎨</div>
+    <div class="engage-title">Pas de template recyclé</div>
+    <p class="engage-text">Pas de template recyclé. Chaque site est pensé pour convertir.</p>
+  </div>
+  <div class="engage-item r d2">
+    <div class="engage-icon">✅</div>
+    <div class="engage-title">Satisfaction totale</div>
+    <p class="engage-text">Le projet ne sera pas terminé avant que tu sois 100% satisfait.</p>
+  </div>
+  </div>
+</div>
+
+<!-- ══ CONTACT ════════════════════════════════════ -->
+<section id="contact" class="section">
+  <div class="container">
+    <div class="cta-box r">
+      <div class="cta-left">
+        <p class="overline" style="color:var(--gold-pale)">Démarrez votre projet aujourd'hui !</p>
+        <h2 class="h2 h2-white">Consultation<br><em>gratuite</em></h2>
+        <div class="rule"></div>
+        <p>Contactez-moi pour une consultation gratuite et découvrez comment je peux vous aider à réussir en ligne.</p>
+        <a href="mailto:stella.web@yahoo.com" class="btn-gold" style="display:inline-flex;align-items:center;gap:10px;">
+          ✉️ stella.web@yahoo.com
+        </a>
+      </div>
+      <div class="cta-right">
+        <div class="form-row">
+          <label class="form-label">Votre nom *</label>
+          <input type="text" class="form-input" placeholder="Marie Dupont">
+        </div>
+        <div class="form-row">
+          <label class="form-label">Votre email *</label>
+          <input type="email" class="form-input" placeholder="marie@exemple.fr">
+        </div>
+        <div class="form-row">
+          <label class="form-label">Prestation souhaitée</label>
+          <select class="form-select">
+            <option value="" disabled selected>Choisissez une prestation</option>
+            <option>Site WordPress vitrine — 500€</option>
+            <option>Site e-commerce — à partir de 550€</option>
+            <option>Optimisation SEO — 150€</option>
+            <option>Je ne sais pas encore</option>
+          </select>
+        </div>
+        <div class="form-row">
+          <label class="form-label">Votre message *</label>
+          <textarea class="form-textarea" placeholder="Parlez-moi de votre projet…"></textarea>
+        </div>
+        <button class="form-submit">Envoyer ma demande →</button>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ══ FOOTER ═════════════════════════════════════ -->
+<footer>
+  <div class="footer-top">
+    <div>
+      <div class="footer-logo">Digital <em>by</em> Stella</div>
+      <p class="footer-desc">
+        Créatrice de sites WordPress &amp; e-commerce sur-mesure.
+        Transformez vos idées en succès en ligne, avec un site moderne,
+        performant et qui vous ressemble.
+      </p>
+      <a href="mailto:stella.web@yahoo.com" class="footer-mail">✉️ stella.web@yahoo.com</a>
+    </div>
+    <div>
+      <p class="footer-h">Navigation</p>
+      <ul class="footer-ul">
+        <li><a href="#about">À propos</a></li>
+        <li><a href="#services">Services</a></li>
+        <li><a href="#process">Méthode</a></li>
+        <li><a href="#contact">Contact</a></li>
+      </ul>
+    </div>
+    <div>
+      <p class="footer-h">Prestations</p>
+      <ul class="footer-ul">
+        <li><a href="#services">Site vitrine — 500€</a></li>
+        <li><a href="#services">E-commerce — dès 550€</a></li>
+        <li><a href="#services">Optimisation SEO — 150€</a></li>
+        <li><a href="#contact">Consultation gratuite</a></li>
+        <li><a href="politique-de-confidentialite.html">Politique de confidentialité</a></li>
+      </ul>
+    </div>
+  </div>
+  <div class="footer-bottom">
+    <span>© 2026 | Ecommerce By Stella !</span>
+    <a href="politique-de-confidentialite.html" style="color:rgba(255,255,255,.25);text-decoration:none;transition:color .3s;" onmouseover="this.style.color='#C4567E'" onmouseout="this.style.color='rgba(255,255,255,.25)'">Politique de confidentialité</a>
+  </div>
+</footer>
+
+<script>
+/* NAV */
+const nav = document.getElementById('nav');
+window.addEventListener('scroll', () => nav.classList.toggle('solid', scrollY > 60), {passive:true});
+
+/* HAMBURGER */
+const burger     = document.getElementById('burger');
+const mobileMenu = document.getElementById('mobileMenu');
+function closeMobileMenu() {
+  mobileMenu.classList.remove('open');
+  burger.classList.remove('open');
+  document.body.style.overflow = '';
+}
+burger.addEventListener('click', () => {
+  const isOpen = mobileMenu.classList.toggle('open');
+  burger.classList.toggle('open', isOpen);
+  document.body.style.overflow = isOpen ? 'hidden' : '';
+});
+document.getElementById('closeMenu').addEventListener('click', closeMobileMenu);
+
+/* REVEAL */
+const obs = new IntersectionObserver(es => es.forEach(e => e.isIntersecting && e.target.classList.add('v')), {threshold:.13});
+document.querySelectorAll('.r').forEach(el => obs.observe(el));
+
+/* WALKER */
+const walker   = document.getElementById('walker');
+const walkerSvg = walker.querySelector('svg');
+const limbs     = walker.querySelectorAll('#wLL,#wRL,#wLA,#wRA,#wBody');
+
+let curX = 0, tgtX = 0, lastY = 0, walkTimer, isWalking = false;
+
+function maxX() { return window.innerWidth - 76; }
+
+function getTarget() {
+  const total = document.documentElement.scrollHeight - window.innerHeight;
+  return total > 0 ? (scrollY / total) * maxX() : 0;
+}
+
+function pauseLimbs() {
+  isWalking = false;
+  limbs.forEach(l => l.style.animationPlayState = 'paused');
+}
+function playLimbs() {
+  isWalking = true;
+  limbs.forEach(l => l.style.animationPlayState = 'running');
+}
+
+pauseLimbs();
+
+window.addEventListener('scroll', () => {
+  tgtX = getTarget();
+  walkerSvg.style.transform = scrollY >= lastY ? 'scaleX(1)' : 'scaleX(-1)';
+  lastY = scrollY;
+  playLimbs();
+  clearTimeout(walkTimer);
+  walkTimer = setTimeout(pauseLimbs, 280);
+}, {passive:true});
+
+(function tick() {
+  curX += (tgtX - curX) * 0.09;
+  walker.style.transform = `translateX(${curX}px)`;
+  requestAnimationFrame(tick);
+})();
+
+/* ═══════════════════════════════════════════════════════════════
+   GALAXY BACKGROUND — port vanilla WebGL du composant React Bits
+   <Galaxy /> — aucune dépendance, aucun bundle
+   Props : hueShift=260(violet), saturation=1, density=1.5,
+           glowIntensity=0.5, rotationSpeed=0.3, starSpeed=0.9,
+           mouseRepulsion=true, twinkleIntensity=0.4
+═══════════════════════════════════════════════════════════════ */
+(function(){
+  /* ── Canvas ──────────────────────────────────────────────── */
+  const cvs = document.createElement('canvas');
+  cvs.id = 'galaxy-bg';
+  cvs.style.cssText = 'position:fixed;top:0;left:0;width:100%;height:100%;pointer-events:none;z-index:0;';
+  document.body.insertBefore(cvs, document.body.firstChild);
+
+  const gl = cvs.getContext('webgl', { alpha:false, antialias:false, powerPreference:'high-performance' });
+  if(!gl){ cvs.remove(); return; }
+  gl.clearColor(0.024, 0.010, 0.055, 1.0);
+
+  /* ── Vertex shader ───────────────────────────────────────── */
+  const VERT = `
+    attribute vec2 position;
+    attribute vec2 uv;
+    varying vec2 vUv;
+    void main(){
+      vUv = uv;
+      gl_Position = vec4(position, 0.0, 1.0);
+    }
+  `;
+
+  /* ── Fragment shader (galaxy shader from React Bits) ─────── */
+  const FRAG = `
+    precision highp float;
+
+    uniform float uTime;
+    uniform vec3  uResolution;
+    uniform vec2  uFocal;
+    uniform vec2  uRotation;
+    uniform float uStarSpeed;
+    uniform float uDensity;
+    uniform float uHueShift;
+    uniform float uSpeed;
+    uniform vec2  uMouse;
+    uniform float uGlowIntensity;
+    uniform float uSaturation;
+    uniform bool  uMouseRepulsion;
+    uniform float uTwinkleIntensity;
+    uniform float uRotationSpeed;
+    uniform float uRepulsionStrength;
+    uniform float uMouseActiveFactor;
+    uniform float uAutoCenterRepulsion;
+
+    varying vec2 vUv;
+
+    #define NUM_LAYER 4.0
+    #define STAR_COLOR_CUTOFF 0.2
+    #define MAT45 mat2(0.7071,-0.7071,0.7071,0.7071)
+    #define PERIOD 3.0
+
+    float Hash21(vec2 p){
+      p = fract(p * vec2(123.34,456.21));
+      p += dot(p, p + 45.32);
+      return fract(p.x * p.y);
+    }
+    float tri(float x){ return abs(fract(x)*2.0-1.0); }
+    float tris(float x){
+      float t = fract(x);
+      return 1.0 - smoothstep(0.0,1.0,abs(2.0*t-1.0));
+    }
+    float trisn(float x){
+      float t = fract(x);
+      return 2.0*(1.0-smoothstep(0.0,1.0,abs(2.0*t-1.0)))-1.0;
+    }
+    vec3 hsv2rgb(vec3 c){
+      vec4 K = vec4(1.0,2.0/3.0,1.0/3.0,3.0);
+      vec3 p = abs(fract(c.xxx+K.xyz)*6.0-K.www);
+      return c.z * mix(K.xxx, clamp(p-K.xxx,0.0,1.0), c.y);
+    }
+
+    float Star(vec2 uv, float flare){
+      float d = length(uv);
+      float m = (0.05*uGlowIntensity)/d;
+      float rays = smoothstep(0.0,1.0,1.0-abs(uv.x*uv.y*1000.0));
+      m += rays * flare * uGlowIntensity;
+      uv *= MAT45;
+      rays = smoothstep(0.0,1.0,1.0-abs(uv.x*uv.y*1000.0));
+      m += rays * 0.3 * flare * uGlowIntensity;
+      m *= smoothstep(1.0,0.2,d);
+      return m;
+    }
+
+    vec3 StarLayer(vec2 uv){
+      vec3 col = vec3(0.0);
+      vec2 gv = fract(uv) - 0.5;
+      vec2 id = floor(uv);
+      for(int y=-1; y<=1; y++){
+        for(int x=-1; x<=1; x++){
+          vec2 offset = vec2(float(x),float(y));
+          vec2 si     = id + offset;
+          float seed  = Hash21(si);
+          float size  = fract(seed*345.32);
+          float glossLocal = tri(uStarSpeed/(PERIOD*seed+1.0));
+          float flareSize  = smoothstep(0.9,1.0,size)*glossLocal;
+
+          float red = smoothstep(STAR_COLOR_CUTOFF,1.0,Hash21(si+1.0))+STAR_COLOR_CUTOFF;
+          float blu = smoothstep(STAR_COLOR_CUTOFF,1.0,Hash21(si+3.0))+STAR_COLOR_CUTOFF;
+          float grn = min(red,blu)*seed;
+          vec3 base = vec3(red,grn,blu);
+
+          float hue = atan(base.g-base.r, base.b-base.r)/(2.0*3.14159)+0.5;
+          hue = fract(hue + uHueShift/360.0);
+          float sat = length(base - vec3(dot(base,vec3(0.299,0.587,0.114))))*uSaturation;
+          float val = max(max(base.r,base.g),base.b);
+          base = hsv2rgb(vec3(hue,sat,val));
+
+          vec2 pad = vec2(
+            tris(seed*34.0 + uTime*uSpeed/10.0),
+            tris(seed*38.0 + uTime*uSpeed/30.0)
+          ) - 0.5;
+
+          float star    = Star(gv-offset-pad, flareSize);
+          float twinkle = trisn(uTime*uSpeed + seed*6.2831)*0.5+1.0;
+          twinkle = mix(1.0, twinkle, uTwinkleIntensity);
+          star *= twinkle;
+          col  += star * size * base;
+        }
+      }
+      return col;
+    }
+
+    void main(){
+      vec2 focalPx = uFocal * uResolution.xy;
+      vec2 uv      = (vUv*uResolution.xy - focalPx) / uResolution.y;
+
+      if(uAutoCenterRepulsion > 0.0){
+        vec2 dir  = uv;
+        float d   = length(dir)+0.0001;
+        uv += normalize(dir)*(uAutoCenterRepulsion/(d+0.1))*0.05;
+      } else if(uMouseRepulsion){
+        vec2 mUV  = (uMouse*uResolution.xy - focalPx)/uResolution.y;
+        vec2 dir  = uv - mUV;
+        float d   = length(dir)+0.0001;
+        uv += normalize(dir)*(uRepulsionStrength/(d+0.1))*0.05*uMouseActiveFactor;
+      } else {
+        uv += (uMouse-0.5)*0.1*uMouseActiveFactor;
+      }
+
+      float ang = uTime * uRotationSpeed;
+      mat2 autoRot = mat2(cos(ang),-sin(ang),sin(ang),cos(ang));
+      uv = autoRot * uv;
+      uv = mat2(uRotation.x,-uRotation.y,uRotation.y,uRotation.x) * uv;
+
+      vec3 col = vec3(0.0);
+      for(float i=0.0; i<1.0; i+=1.0/NUM_LAYER){
+        float depth = fract(i + uStarSpeed*uSpeed);
+        float scale = mix(20.0*uDensity, 0.5*uDensity, depth);
+        float fade  = depth * smoothstep(1.0,0.9,depth);
+        col += StarLayer(uv*scale + i*453.32)*fade;
+      }
+
+      /* Fond sombre violet animé — intégré au shader */
+      float bgD   = length(vUv-0.5)*1.9;
+      float pulse = sin(uTime*0.22)*0.5+0.5;
+      vec3 bg = mix(
+        vec3(0.055,0.012,0.110),   /* violet foncé centre */
+        vec3(0.006,0.002,0.018),   /* quasi-noir bords    */
+        smoothstep(0.0,1.0,bgD)
+      );
+      bg += vec3(pulse*0.008, 0.0, pulse*0.018);
+
+      gl_FragColor = vec4(bg + col, 1.0);
+    }
+  `;
+
+  /* ── Compilation ─────────────────────────────────────────── */
+  function mkShader(type, src){
+    const s = gl.createShader(type);
+    gl.shaderSource(s, src);
+    gl.compileShader(s);
+    if(!gl.getShaderParameter(s, gl.COMPILE_STATUS)){
+      console.error('Galaxy shader error:', gl.getShaderInfoLog(s));
+      gl.deleteShader(s); return null;
+    }
+    return s;
+  }
+  const vert = mkShader(gl.VERTEX_SHADER, VERT);
+  const frag = mkShader(gl.FRAGMENT_SHADER, FRAG);
+  if(!vert || !frag){ cvs.remove(); return; }
+
+  const prog = gl.createProgram();
+  gl.attachShader(prog, vert);
+  gl.attachShader(prog, frag);
+  gl.linkProgram(prog);
+  if(!gl.getProgramParameter(prog, gl.LINK_STATUS)){
+    console.error('Galaxy link error:', gl.getProgramInfoLog(prog));
+    cvs.remove(); return;
+  }
+  gl.useProgram(prog);
+
+  /* ── Géométrie : triangle plein-écran ───────────────────── */
+  const posBuf = gl.createBuffer();
+  gl.bindBuffer(gl.ARRAY_BUFFER, posBuf);
+  gl.bufferData(gl.ARRAY_BUFFER, new Float32Array([-1,-1, 3,-1, -1,3]), gl.STATIC_DRAW);
+  const posLoc = gl.getAttribLocation(prog, 'position');
+  gl.enableVertexAttribArray(posLoc);
+  gl.vertexAttribPointer(posLoc, 2, gl.FLOAT, false, 0, 0);
+
+  const uvBuf = gl.createBuffer();
+  gl.bindBuffer(gl.ARRAY_BUFFER, uvBuf);
+  gl.bufferData(gl.ARRAY_BUFFER, new Float32Array([0,0, 2,0, 0,2]), gl.STATIC_DRAW);
+  const uvLoc = gl.getAttribLocation(prog, 'uv');
+  gl.enableVertexAttribArray(uvLoc);
+  gl.vertexAttribPointer(uvLoc, 2, gl.FLOAT, false, 0, 0);
+
+  /* ── Uniforms ─────────────────────────────────────────────── */
+  const U = {
+    time:     gl.getUniformLocation(prog,'uTime'),
+    res:      gl.getUniformLocation(prog,'uResolution'),
+    focal:    gl.getUniformLocation(prog,'uFocal'),
+    rot:      gl.getUniformLocation(prog,'uRotation'),
+    starSpd:  gl.getUniformLocation(prog,'uStarSpeed'),
+    density:  gl.getUniformLocation(prog,'uDensity'),
+    hue:      gl.getUniformLocation(prog,'uHueShift'),
+    speed:    gl.getUniformLocation(prog,'uSpeed'),
+    mouse:    gl.getUniformLocation(prog,'uMouse'),
+    glow:     gl.getUniformLocation(prog,'uGlowIntensity'),
+    sat:      gl.getUniformLocation(prog,'uSaturation'),
+    mouseRep: gl.getUniformLocation(prog,'uMouseRepulsion'),
+    twinkle:  gl.getUniformLocation(prog,'uTwinkleIntensity'),
+    rotSpd:   gl.getUniformLocation(prog,'uRotationSpeed'),
+    repStr:   gl.getUniformLocation(prog,'uRepulsionStrength'),
+    mouseAct: gl.getUniformLocation(prog,'uMouseActiveFactor'),
+    autoC:    gl.getUniformLocation(prog,'uAutoCenterRepulsion'),
+  };
+
+  /* Props statiques — usage example React Bits */
+  gl.uniform2f(U.focal,   0.5,  0.5);
+  gl.uniform2f(U.rot,     1.0,  0.0);
+  gl.uniform1f(U.density, 0.3);     /* moins d'étoiles, plus aéré */
+  gl.uniform1f(U.hue,     240.0);   /* bleu-violet */
+  gl.uniform1f(U.speed,   2.1);     /* animation plus rapide */
+  gl.uniform1f(U.glow,    0.5);
+  gl.uniform1f(U.sat,     1.0);     /* couleurs saturées */
+  gl.uniform1i(U.mouseRep, 1);
+  gl.uniform1f(U.twinkle, 0.7);     /* scintillement marqué */
+  gl.uniform1f(U.rotSpd,  0.0);     /* pas de rotation auto */
+  gl.uniform1f(U.repStr,  1.0);
+  gl.uniform1f(U.autoC,   0.0);
+
+  /* ── Resize ──────────────────────────────────────────────── */
+  function resize(){
+    cvs.width  = innerWidth;
+    cvs.height = innerHeight;
+    gl.viewport(0, 0, cvs.width, cvs.height);
+    gl.uniform3f(U.res, cvs.width, cvs.height, cvs.width/cvs.height);
+  }
+  resize();
+  window.addEventListener('resize', resize, {passive:true});
+
+  /* ── Souris désactivée (mouseInteraction=false) ─────────── */
+  /* SplashCursor gère l'interaction souris à sa place          */
+
+  /* ── Boucle de rendu ─────────────────────────────────────── */
+  const STAR_SPEED = 0.7;
+  requestAnimationFrame(function render(ts){
+    const t = ts * 0.001;
+    gl.clear(gl.COLOR_BUFFER_BIT);
+    gl.uniform1f(U.time,    t);
+    gl.uniform1f(U.starSpd, t * STAR_SPEED / 10.0);
+    gl.uniform2f(U.mouse,   0.5, 0.5);
+    gl.uniform1f(U.mouseAct, 0.0);
+    gl.drawArrays(gl.TRIANGLES, 0, 3);
+    requestAnimationFrame(render);
+  });
+})();
+
+/* ═══════════════════════════════════════════════════════════════
+   SPLASH CURSOR — port vanilla WebGL du composant React Bits
+   <SplashCursor /> — simulation fluide interactive au-dessus
+   de la galaxie. Transparent, réagit à la souris et au touch.
+═══════════════════════════════════════════════════════════════ */
+(function(){
+  const canvas = document.createElement('canvas');
+  canvas.id = 'fluid';
+  canvas.style.cssText = 'position:fixed;top:0;left:0;width:100vw;height:100vh;pointer-events:none;z-index:50;';
+  document.body.appendChild(canvas);
+
+  /* ── Config ──────────────────────────────────────────────── */
+  const CFG = {
+    SIM_RESOLUTION:       128,
+    DYE_RESOLUTION:       1440,
+    DENSITY_DISSIPATION:  3.5,
+    VELOCITY_DISSIPATION: 2,
+    PRESSURE:             0.1,
+    PRESSURE_ITERATIONS:  20,
+    CURL:                 3,
+    SPLAT_RADIUS:         0.2,
+    SPLAT_FORCE:          6000,
+    SHADING:              true,
+    COLOR_UPDATE_SPEED:   10,
+    TRANSPARENT:          true,
+    RAINBOW_MODE:         true,
+  };
+
+  function mkPtr(){ return {id:-1,texcoordX:.5,texcoordY:.5,prevTexcoordX:.5,prevTexcoordY:.5,
+                            deltaX:0,deltaY:0,down:false,moved:false,color:{r:.15,g:0,b:.15}}; }
+  const ptrs = [mkPtr()];
+
+  /* ── WebGL context ───────────────────────────────────────── */
+  const P = {alpha:true,depth:false,stencil:false,antialias:false,preserveDrawingBuffer:false};
+  let gl = canvas.getContext('webgl2',P);
+  const isGL2 = !!gl;
+  if(!isGL2) gl = canvas.getContext('webgl',P)||canvas.getContext('experimental-webgl',P);
+  if(!gl){ canvas.remove(); return; }
+
+  let hfExt, linFilt;
+  if(isGL2){
+    gl.getExtension('EXT_color_buffer_float');
+    linFilt = gl.getExtension('OES_texture_float_linear');
+  } else {
+    hfExt   = gl.getExtension('OES_texture_half_float');
+    linFilt = gl.getExtension('OES_texture_half_float_linear');
+  }
+  gl.clearColor(0,0,0,1);
+  const hfType = isGL2 ? gl.HALF_FLOAT : (hfExt&&hfExt.HALF_FLOAT_OES);
+
+  function chkFmt(iFmt,fmt,type){
+    const tex=gl.createTexture(); gl.bindTexture(gl.TEXTURE_2D,tex);
+    gl.texParameteri(gl.TEXTURE_2D,gl.TEXTURE_MIN_FILTER,gl.NEAREST);
+    gl.texParameteri(gl.TEXTURE_2D,gl.TEXTURE_MAG_FILTER,gl.NEAREST);
+    gl.texParameteri(gl.TEXTURE_2D,gl.TEXTURE_WRAP_S,gl.CLAMP_TO_EDGE);
+    gl.texParameteri(gl.TEXTURE_2D,gl.TEXTURE_WRAP_T,gl.CLAMP_TO_EDGE);
+    gl.texImage2D(gl.TEXTURE_2D,0,iFmt,4,4,0,fmt,type,null);
+    const fbo=gl.createFramebuffer(); gl.bindFramebuffer(gl.FRAMEBUFFER,fbo);
+    gl.framebufferTexture2D(gl.FRAMEBUFFER,gl.COLOR_ATTACHMENT0,gl.TEXTURE_2D,tex,0);
+    return gl.checkFramebufferStatus(gl.FRAMEBUFFER)===gl.FRAMEBUFFER_COMPLETE;
+  }
+  function getFmt(iFmt,fmt,type){
+    if(!chkFmt(iFmt,fmt,type)){
+      if(iFmt===gl.R16F)  return getFmt(gl.RG16F,  gl.RG,  type);
+      if(iFmt===gl.RG16F) return getFmt(gl.RGBA16F,gl.RGBA,type);
+      return null;
+    }
+    return {internalFormat:iFmt,format:fmt};
+  }
+  let fmtRGBA,fmtRG,fmtR;
+  if(isGL2){
+    fmtRGBA=getFmt(gl.RGBA16F,gl.RGBA,hfType);
+    fmtRG  =getFmt(gl.RG16F,  gl.RG,  hfType);
+    fmtR   =getFmt(gl.R16F,   gl.RED, hfType);
+  } else {
+    fmtRGBA=fmtRG=fmtR=getFmt(gl.RGBA,gl.RGBA,hfType);
+  }
+  if(!fmtRGBA||!fmtRG||!fmtR){ canvas.remove(); return; }
+  if(!linFilt){ CFG.DYE_RESOLUTION=256; CFG.SHADING=false; }
+
+  /* ── Shader helpers ──────────────────────────────────────── */
+  function mkS(type,src,kws){
+    if(kws) src=kws.map(k=>'#define '+k+'\n').join('')+src;
+    const s=gl.createShader(type); gl.shaderSource(s,src); gl.compileShader(s);
+    if(!gl.getShaderParameter(s,gl.COMPILE_STATUS)) console.error('SplashCursor shader:',gl.getShaderInfoLog(s));
+    return s;
+  }
+  function mkP(v,f){
+    const p=gl.createProgram(); gl.attachShader(p,v); gl.attachShader(p,f); gl.linkProgram(p);
+    if(!gl.getProgramParameter(p,gl.LINK_STATUS)) console.error('SplashCursor prog:',gl.getProgramInfoLog(p));
+    return p;
+  }
+  function getU(prog){
+    const u={},n=gl.getProgramParameter(prog,gl.ACTIVE_UNIFORMS);
+    for(let i=0;i<n;i++){const nm=gl.getActiveUniform(prog,i).name;u[nm]=gl.getUniformLocation(prog,nm);}
+    return u;
+  }
+
+  /* ── Vertex shader (partagé) ─────────────────────────────── */
+  const baseV = mkS(gl.VERTEX_SHADER,`
+    precision highp float;
+    attribute vec2 aPosition;
+    varying vec2 vUv,vL,vR,vT,vB;
+    uniform vec2 texelSize;
+    void main(){
+      vUv=aPosition*.5+.5;
+      vL=vUv-vec2(texelSize.x,0.); vR=vUv+vec2(texelSize.x,0.);
+      vT=vUv+vec2(0.,texelSize.y); vB=vUv-vec2(0.,texelSize.y);
+      gl_Position=vec4(aPosition,0.,1.);
+    }
+  `);
+
+  /* ── Fragment shaders ────────────────────────────────────── */
+  const copyF = mkS(gl.FRAGMENT_SHADER,`
+    precision mediump float; precision mediump sampler2D;
+    varying highp vec2 vUv; uniform sampler2D uTexture;
+    void main(){ gl_FragColor=texture2D(uTexture,vUv); }
+  `);
+  const clearF = mkS(gl.FRAGMENT_SHADER,`
+    precision mediump float; precision mediump sampler2D;
+    varying highp vec2 vUv; uniform sampler2D uTexture; uniform float value;
+    void main(){ gl_FragColor=value*texture2D(uTexture,vUv); }
+  `);
+  const splatF = mkS(gl.FRAGMENT_SHADER,`
+    precision highp float; precision highp sampler2D;
+    varying vec2 vUv; uniform sampler2D uTarget;
+    uniform float aspectRatio; uniform vec3 color; uniform vec2 point; uniform float radius;
+    void main(){
+      vec2 p=vUv-point; p.x*=aspectRatio;
+      gl_FragColor=vec4(texture2D(uTarget,vUv).xyz+exp(-dot(p,p)/radius)*color,1.);
+    }
+  `);
+  const displayFSrc = `
+    precision highp float; precision highp sampler2D;
+    varying vec2 vUv,vL,vR,vT,vB;
+    uniform sampler2D uTexture; uniform vec2 texelSize;
+    void main(){
+      vec3 c=texture2D(uTexture,vUv).rgb;
+      #ifdef SHADING
+        float dx=length(texture2D(uTexture,vR).rgb)-length(texture2D(uTexture,vL).rgb);
+        float dy=length(texture2D(uTexture,vT).rgb)-length(texture2D(uTexture,vB).rgb);
+        c*=clamp(dot(normalize(vec3(dx,dy,length(texelSize))),vec3(0,0,1))+.7,.7,1.);
+      #endif
+      gl_FragColor=vec4(c,max(c.r,max(c.g,c.b)));
+    }
+  `;
+  const advF = mkS(gl.FRAGMENT_SHADER,`
+    precision highp float; precision highp sampler2D;
+    varying vec2 vUv; uniform sampler2D uVelocity,uSource;
+    uniform vec2 texelSize,dyeTexelSize; uniform float dt,dissipation;
+    vec4 bil(sampler2D s,vec2 uv,vec2 ts){
+      vec2 st=uv/ts-.5,iuv=floor(st),fuv=fract(st);
+      return mix(mix(texture2D(s,(iuv+vec2(.5,.5))*ts),texture2D(s,(iuv+vec2(1.5,.5))*ts),fuv.x),
+                 mix(texture2D(s,(iuv+vec2(.5,1.5))*ts),texture2D(s,(iuv+vec2(1.5,1.5))*ts),fuv.x),fuv.y);
+    }
+    void main(){
+      #ifdef MANUAL_FILTERING
+        vec4 r=bil(uSource,vUv-dt*bil(uVelocity,vUv,texelSize).xy*texelSize,dyeTexelSize);
+      #else
+        vec4 r=texture2D(uSource,vUv-dt*texture2D(uVelocity,vUv).xy*texelSize);
+      #endif
+      gl_FragColor=r/(1.+dissipation*dt);
+    }
+  `, linFilt?null:['MANUAL_FILTERING']);
+  const divF = mkS(gl.FRAGMENT_SHADER,`
+    precision mediump float; precision mediump sampler2D;
+    varying highp vec2 vUv,vL,vR,vT,vB; uniform sampler2D uVelocity;
+    void main(){
+      float L=texture2D(uVelocity,vL).x,R=texture2D(uVelocity,vR).x;
+      float T=texture2D(uVelocity,vT).y,B=texture2D(uVelocity,vB).y;
+      vec2 C=texture2D(uVelocity,vUv).xy;
+      if(vL.x<0.)L=-C.x; if(vR.x>1.)R=-C.x; if(vT.y>1.)T=-C.y; if(vB.y<0.)B=-C.y;
+      gl_FragColor=vec4(.5*(R-L+T-B),0,0,1);
+    }
+  `);
+  const curlF = mkS(gl.FRAGMENT_SHADER,`
+    precision mediump float; precision mediump sampler2D;
+    varying highp vec2 vUv,vL,vR,vT,vB; uniform sampler2D uVelocity;
+    void main(){
+      gl_FragColor=vec4(.5*(texture2D(uVelocity,vR).y-texture2D(uVelocity,vL).y
+                          -texture2D(uVelocity,vT).x+texture2D(uVelocity,vB).x),0,0,1);
+    }
+  `);
+  const vortF = mkS(gl.FRAGMENT_SHADER,`
+    precision highp float; precision highp sampler2D;
+    varying vec2 vUv,vL,vR,vT,vB; uniform sampler2D uVelocity,uCurl;
+    uniform float curl,dt;
+    void main(){
+      float L=texture2D(uCurl,vL).x,R=texture2D(uCurl,vR).x;
+      float T=texture2D(uCurl,vT).x,B=texture2D(uCurl,vB).x,C=texture2D(uCurl,vUv).x;
+      vec2 f=.5*vec2(abs(T)-abs(B),abs(R)-abs(L));
+      f=f/(length(f)+.0001)*curl*C; f.y*=-1.;
+      gl_FragColor=vec4(clamp(texture2D(uVelocity,vUv).xy+f*dt,-1000.,1000.),0,1);
+    }
+  `);
+  const presF = mkS(gl.FRAGMENT_SHADER,`
+    precision mediump float; precision mediump sampler2D;
+    varying highp vec2 vUv,vL,vR,vT,vB; uniform sampler2D uPressure,uDivergence;
+    void main(){
+      gl_FragColor=vec4((texture2D(uPressure,vL).x+texture2D(uPressure,vR).x
+                        +texture2D(uPressure,vB).x+texture2D(uPressure,vT).x
+                        -texture2D(uDivergence,vUv).x)*.25,0,0,1);
+    }
+  `);
+  const gradF = mkS(gl.FRAGMENT_SHADER,`
+    precision mediump float; precision mediump sampler2D;
+    varying highp vec2 vUv,vL,vR,vT,vB; uniform sampler2D uPressure,uVelocity;
+    void main(){
+      gl_FragColor=vec4(texture2D(uVelocity,vUv).xy
+        -vec2(texture2D(uPressure,vR).x-texture2D(uPressure,vL).x,
+              texture2D(uPressure,vT).x-texture2D(uPressure,vB).x),0,1);
+    }
+  `);
+
+  /* ── Programs ────────────────────────────────────────────── */
+  function prg(f){const p=mkP(baseV,f);return{p,u:getU(p)};}
+  const copyP=prg(copyF), clearP=prg(clearF), splatP=prg(splatF);
+  const advP=prg(advF), divP=prg(divF), curlP=prg(curlF);
+  const vortP=prg(vortF), presP=prg(presF), gradP=prg(gradF);
+  /* display (avec keyword SHADING optionnel) */
+  const displayFrag = mkS(gl.FRAGMENT_SHADER, displayFSrc, CFG.SHADING?['SHADING']:null);
+  const dispP = mkP(baseV, displayFrag);
+  const dispU = getU(dispP);
+
+  /* ── Blit quad ───────────────────────────────────────────── */
+  gl.bindBuffer(gl.ARRAY_BUFFER,gl.createBuffer());
+  gl.bufferData(gl.ARRAY_BUFFER,new Float32Array([-1,-1,-1,1,1,1,1,-1]),gl.STATIC_DRAW);
+  gl.bindBuffer(gl.ELEMENT_ARRAY_BUFFER,gl.createBuffer());
+  gl.bufferData(gl.ELEMENT_ARRAY_BUFFER,new Uint16Array([0,1,2,0,2,3]),gl.STATIC_DRAW);
+  gl.vertexAttribPointer(0,2,gl.FLOAT,false,0,0);
+  gl.enableVertexAttribArray(0);
+  function blit(tgt,clear=false){
+    if(tgt==null){gl.viewport(0,0,gl.drawingBufferWidth,gl.drawingBufferHeight);gl.bindFramebuffer(gl.FRAMEBUFFER,null);}
+    else{gl.viewport(0,0,tgt.width,tgt.height);gl.bindFramebuffer(gl.FRAMEBUFFER,tgt.fbo);}
+    if(clear){gl.clearColor(0,0,0,1);gl.clear(gl.COLOR_BUFFER_BIT);}
+    gl.drawElements(gl.TRIANGLES,6,gl.UNSIGNED_SHORT,0);
+  }
+
+  /* ── FBOs ────────────────────────────────────────────────── */
+  function mkFBO(w,h,iFmt,fmt,type,param){
+    gl.activeTexture(gl.TEXTURE0);
+    const tex=gl.createTexture(); gl.bindTexture(gl.TEXTURE_2D,tex);
+    gl.texParameteri(gl.TEXTURE_2D,gl.TEXTURE_MIN_FILTER,param);
+    gl.texParameteri(gl.TEXTURE_2D,gl.TEXTURE_MAG_FILTER,param);
+    gl.texParameteri(gl.TEXTURE_2D,gl.TEXTURE_WRAP_S,gl.CLAMP_TO_EDGE);
+    gl.texParameteri(gl.TEXTURE_2D,gl.TEXTURE_WRAP_T,gl.CLAMP_TO_EDGE);
+    gl.texImage2D(gl.TEXTURE_2D,0,iFmt,w,h,0,fmt,type,null);
+    const fbo=gl.createFramebuffer(); gl.bindFramebuffer(gl.FRAMEBUFFER,fbo);
+    gl.framebufferTexture2D(gl.FRAMEBUFFER,gl.COLOR_ATTACHMENT0,gl.TEXTURE_2D,tex,0);
+    gl.viewport(0,0,w,h); gl.clear(gl.COLOR_BUFFER_BIT);
+    return{texture:tex,fbo,width:w,height:h,texelSizeX:1/w,texelSizeY:1/h,
+           attach(id){gl.activeTexture(gl.TEXTURE0+id);gl.bindTexture(gl.TEXTURE_2D,tex);return id;}};
+  }
+  function mkDFBO(w,h,iFmt,fmt,type,param){
+    let a=mkFBO(w,h,iFmt,fmt,type,param),b=mkFBO(w,h,iFmt,fmt,type,param);
+    return{width:w,height:h,texelSizeX:a.texelSizeX,texelSizeY:a.texelSizeY,
+           get read(){return a;},set read(v){a=v;},
+           get write(){return b;},set write(v){b=v;},
+           swap(){const t=a;a=b;b=t;}};
+  }
+  function resFBO(t,w,h,iFmt,fmt,type,param){
+    const n=mkFBO(w,h,iFmt,fmt,type,param);
+    gl.useProgram(copyP.p); gl.uniform1i(copyP.u.uTexture,t.attach(0)); blit(n); return n;
+  }
+  function resDFBO(t,w,h,iFmt,fmt,type,param){
+    if(t.width===w&&t.height===h) return t;
+    t.read=resFBO(t.read,w,h,iFmt,fmt,type,param);
+    t.write=mkFBO(w,h,iFmt,fmt,type,param);
+    t.width=w;t.height=h;t.texelSizeX=1/w;t.texelSizeY=1/h; return t;
+  }
+  function getRes(r){
+    let ar=gl.drawingBufferWidth/gl.drawingBufferHeight; if(ar<1)ar=1/ar;
+    const mn=Math.round(r),mx=Math.round(r*ar);
+    return gl.drawingBufferWidth>gl.drawingBufferHeight?{width:mx,height:mn}:{width:mn,height:mx};
+  }
+  let dye,velocity,divergence,curlFBO,pressure;
+  function initFBOs(){
+    const sr=getRes(CFG.SIM_RESOLUTION),dr=getRes(CFG.DYE_RESOLUTION);
+    const filt=linFilt?gl.LINEAR:gl.NEAREST; gl.disable(gl.BLEND);
+    dye=dye?resDFBO(dye,dr.width,dr.height,fmtRGBA.internalFormat,fmtRGBA.format,hfType,filt)
+           :mkDFBO(dr.width,dr.height,fmtRGBA.internalFormat,fmtRGBA.format,hfType,filt);
+    velocity=velocity?resDFBO(velocity,sr.width,sr.height,fmtRG.internalFormat,fmtRG.format,hfType,filt)
+                     :mkDFBO(sr.width,sr.height,fmtRG.internalFormat,fmtRG.format,hfType,filt);
+    divergence=mkFBO(sr.width,sr.height,fmtR.internalFormat,fmtR.format,hfType,gl.NEAREST);
+    curlFBO   =mkFBO(sr.width,sr.height,fmtR.internalFormat,fmtR.format,hfType,gl.NEAREST);
+    pressure  =mkDFBO(sr.width,sr.height,fmtR.internalFormat,fmtR.format,hfType,gl.NEAREST);
+  }
+  initFBOs();
+
+  /* ── Helpers ─────────────────────────────────────────────── */
+  function dpr(x){return Math.floor(x*(devicePixelRatio||1));}
+  function genColor(){
+    const h=Math.random(),i=Math.floor(h*6),f=h*6-i;
+    const [r,g,b]=[[1,f,0],[1-f,1,0],[0,1,f],[0,1-f,1],[f,0,1],[1,0,1-f]][i%6];
+    return{r:r*.15,g:g*.15,b:b*.15};
+  }
+  function corrR(r){let ar=canvas.width/canvas.height;if(ar>1)r*=ar;return r;}
+  function corrDX(d){let ar=canvas.width/canvas.height;if(ar<1)d*=ar;return d;}
+  function corrDY(d){let ar=canvas.width/canvas.height;if(ar>1)d/=ar;return d;}
+
+  /* ── Splat ───────────────────────────────────────────────── */
+  function splat(x,y,dx,dy,col){
+    gl.useProgram(splatP.p);
+    gl.uniform1i(splatP.u.uTarget,velocity.read.attach(0));
+    gl.uniform1f(splatP.u.aspectRatio,canvas.width/canvas.height);
+    gl.uniform2f(splatP.u.point,x,y);
+    gl.uniform3f(splatP.u.color,dx,dy,0);
+    gl.uniform1f(splatP.u.radius,corrR(CFG.SPLAT_RADIUS/100));
+    blit(velocity.write); velocity.swap();
+    gl.uniform1i(splatP.u.uTarget,dye.read.attach(0));
+    gl.uniform3f(splatP.u.color,col.r,col.g,col.b);
+    blit(dye.write); dye.swap();
+  }
+
+  /* ── Simulation step ─────────────────────────────────────── */
+  function step(dt){
+    gl.disable(gl.BLEND);
+    gl.useProgram(curlP.p);
+    gl.uniform2f(curlP.u.texelSize,velocity.texelSizeX,velocity.texelSizeY);
+    gl.uniform1i(curlP.u.uVelocity,velocity.read.attach(0));
+    blit(curlFBO);
+
+    gl.useProgram(vortP.p);
+    gl.uniform2f(vortP.u.texelSize,velocity.texelSizeX,velocity.texelSizeY);
+    gl.uniform1i(vortP.u.uVelocity,velocity.read.attach(0));
+    gl.uniform1i(vortP.u.uCurl,curlFBO.attach(1));
+    gl.uniform1f(vortP.u.curl,CFG.CURL);
+    gl.uniform1f(vortP.u.dt,dt);
+    blit(velocity.write); velocity.swap();
+
+    gl.useProgram(divP.p);
+    gl.uniform2f(divP.u.texelSize,velocity.texelSizeX,velocity.texelSizeY);
+    gl.uniform1i(divP.u.uVelocity,velocity.read.attach(0));
+    blit(divergence);
+
+    gl.useProgram(clearP.p);
+    gl.uniform1i(clearP.u.uTexture,pressure.read.attach(0));
+    gl.uniform1f(clearP.u.value,CFG.PRESSURE);
+    blit(pressure.write); pressure.swap();
+
+    gl.useProgram(presP.p);
+    gl.uniform2f(presP.u.texelSize,velocity.texelSizeX,velocity.texelSizeY);
+    gl.uniform1i(presP.u.uDivergence,divergence.attach(0));
+    for(let i=0;i<CFG.PRESSURE_ITERATIONS;i++){
+      gl.uniform1i(presP.u.uPressure,pressure.read.attach(1));
+      blit(pressure.write); pressure.swap();
+    }
+
+    gl.useProgram(gradP.p);
+    gl.uniform2f(gradP.u.texelSize,velocity.texelSizeX,velocity.texelSizeY);
+    gl.uniform1i(gradP.u.uPressure,pressure.read.attach(0));
+    gl.uniform1i(gradP.u.uVelocity,velocity.read.attach(1));
+    blit(velocity.write); velocity.swap();
+
+    gl.useProgram(advP.p);
+    gl.uniform2f(advP.u.texelSize,velocity.texelSizeX,velocity.texelSizeY);
+    if(!linFilt) gl.uniform2f(advP.u.dyeTexelSize,velocity.texelSizeX,velocity.texelSizeY);
+    const vid=velocity.read.attach(0);
+    gl.uniform1i(advP.u.uVelocity,vid);
+    gl.uniform1i(advP.u.uSource,vid);
+    gl.uniform1f(advP.u.dt,dt);
+    gl.uniform1f(advP.u.dissipation,CFG.VELOCITY_DISSIPATION);
+    blit(velocity.write); velocity.swap();
+
+    if(!linFilt) gl.uniform2f(advP.u.dyeTexelSize,dye.texelSizeX,dye.texelSizeY);
+    gl.uniform1i(advP.u.uVelocity,velocity.read.attach(0));
+    gl.uniform1i(advP.u.uSource,dye.read.attach(1));
+    gl.uniform1f(advP.u.dissipation,CFG.DENSITY_DISSIPATION);
+    blit(dye.write); dye.swap();
+  }
+
+  /* ── Render loop ─────────────────────────────────────────── */
+  let lastT=Date.now(), colTimer=0;
+  ptrs[0].color=genColor();
+
+  requestAnimationFrame(function frame(){
+    const now=Date.now(), dt=Math.min((now-lastT)/1000,.016666); lastT=now;
+
+    /* resize */
+    const W=dpr(canvas.clientWidth),H=dpr(canvas.clientHeight);
+    if(canvas.width!==W||canvas.height!==H){canvas.width=W;canvas.height=H;initFBOs();}
+
+    /* color update */
+    colTimer+=dt*CFG.COLOR_UPDATE_SPEED;
+    if(colTimer>=1){colTimer%=1;ptrs.forEach(p=>{p.color=genColor();});}
+
+    /* splats from moved pointers */
+    ptrs.forEach(p=>{
+      if(p.moved){
+        p.moved=false;
+        splat(p.texcoordX,p.texcoordY,p.deltaX*CFG.SPLAT_FORCE,p.deltaY*CFG.SPLAT_FORCE,p.color);
+      }
+    });
+
+    step(dt);
+    gl.blendFunc(gl.ONE,gl.ONE_MINUS_SRC_ALPHA);
+    gl.enable(gl.BLEND);
+    gl.useProgram(dispP);
+    if(CFG.SHADING) gl.uniform2f(dispU.texelSize,1/gl.drawingBufferWidth,1/gl.drawingBufferHeight);
+    gl.uniform1i(dispU.uTexture,dye.read.attach(0));
+    blit(null);
+
+    requestAnimationFrame(frame);
+  });
+
+  /* ── Input handlers ──────────────────────────────────────── */
+  let firstMove=false;
+
+  function onMove(px,py){
+    const p=ptrs[0];
+    const nx=px/canvas.width, ny=1-py/canvas.height;
+    if(!firstMove){
+      p.texcoordX=nx; p.texcoordY=ny;
+      p.prevTexcoordX=nx; p.prevTexcoordY=ny;
+      firstMove=true; return;
+    }
+    p.prevTexcoordX=p.texcoordX; p.prevTexcoordY=p.texcoordY;
+    p.texcoordX=nx; p.texcoordY=ny;
+    p.deltaX=corrDX(nx-p.prevTexcoordX);
+    p.deltaY=corrDY(ny-p.prevTexcoordY);
+    p.moved=Math.abs(p.deltaX)>0||Math.abs(p.deltaY)>0;
+  }
+  function onClick(px,py){
+    const p=ptrs[0], c=genColor();
+    c.r*=10;c.g*=10;c.b*=10;
+    splat(px/canvas.width,1-py/canvas.height,10*(Math.random()-.5),30*(Math.random()-.5),c);
+  }
+
+  window.addEventListener('mousemove', e=>{onMove(dpr(e.clientX),dpr(e.clientY));},{passive:true});
+  window.addEventListener('mousedown', e=>{onClick(dpr(e.clientX),dpr(e.clientY));});
+  window.addEventListener('touchmove', e=>{
+    e.preventDefault();
+    onMove(dpr(e.targetTouches[0].clientX),dpr(e.targetTouches[0].clientY));
+  },{passive:false});
+  window.addEventListener('touchstart', e=>{
+    onClick(dpr(e.targetTouches[0].clientX),dpr(e.targetTouches[0].clientY));
+  },{passive:true});
+})();
+</script>
+
+</body>
+</html>
