@@ -1973,14 +1973,10 @@ window.addEventListener('scroll', () => {
     splat(px/canvas.width,1-py/canvas.height,10*(Math.random()-.5),30*(Math.random()-.5),c);
   }
 
+  /* Souris (desktop) */
   window.addEventListener('mousemove', e=>{onMove(dpr(e.clientX),dpr(e.clientY));},{passive:true});
-  window.addEventListener('mousedown', e=>{onClick(dpr(e.clientX),dpr(e.clientY));});
-  window.addEventListener('touchmove', e=>{
-    onMove(dpr(e.targetTouches[0].clientX),dpr(e.targetTouches[0].clientY));
-  },{passive:true});
-  window.addEventListener('touchstart', e=>{
-    onClick(dpr(e.targetTouches[0].clientX),dpr(e.targetTouches[0].clientY));
-  },{passive:true});
+  window.addEventListener('mousedown', e=>{onClick(dpr(e.clientX),dpr(e.clientY));},{passive:true});
+  /* Touch désactivé pour ne pas bloquer le scroll mobile */
 })();
 </script>
 
