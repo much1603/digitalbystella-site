@@ -1976,9 +1976,8 @@ window.addEventListener('scroll', () => {
   window.addEventListener('mousemove', e=>{onMove(dpr(e.clientX),dpr(e.clientY));},{passive:true});
   window.addEventListener('mousedown', e=>{onClick(dpr(e.clientX),dpr(e.clientY));});
   window.addEventListener('touchmove', e=>{
-    e.preventDefault();
     onMove(dpr(e.targetTouches[0].clientX),dpr(e.targetTouches[0].clientY));
-  },{passive:false});
+  },{passive:true});
   window.addEventListener('touchstart', e=>{
     onClick(dpr(e.targetTouches[0].clientX),dpr(e.targetTouches[0].clientY));
   },{passive:true});
