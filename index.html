@@ -1513,7 +1513,7 @@ window.addEventListener('scroll', () => {
   gl.uniform1f(U.glow,    0.5);
   gl.uniform1f(U.sat,     1.0);     /* couleurs saturées */
   gl.uniform1i(U.mouseRep, 1);
-  gl.uniform1f(U.twinkle, 0.7);     /* scintillement marqué */
+  gl.uniform1f(U.twinkle, 0.0);     /* pas de scintillement - étoiles figées */
   gl.uniform1f(U.rotSpd,  0.0);     /* pas de rotation auto */
   gl.uniform1f(U.repStr,  1.0);
   gl.uniform1f(U.autoC,   0.0);
@@ -1524,6 +1524,7 @@ window.addEventListener('scroll', () => {
     cvs.height = innerHeight;
     gl.viewport(0, 0, cvs.width, cvs.height);
     gl.uniform3f(U.res, cvs.width, cvs.height, cvs.width/cvs.height);
+    if(typeof drawStatic === 'function') drawStatic();
   }
   resize();
   window.addEventListener('resize', resize, {passive:true});
@@ -1531,19 +1532,16 @@ window.addEventListener('scroll', () => {
   /* ── Souris désactivée (mouseInteraction=false) ─────────── */
   /* SplashCursor gère l'interaction souris à sa place          */
 
-  /* ── Boucle de rendu ─────────────────────────────────────── */
-  const STAR_SPEED = 0.7;
-  requestAnimationFrame(function render(ts){
-    const t = ts * 0.001;
+  /* ── Rendu unique - étoiles complètement figées ────────────── */
+  function drawStatic(){
     gl.clear(gl.COLOR_BUFFER_BIT);
-    /* disableAnimation=true : étoiles figées */
     gl.uniform1f(U.time,    1.0);
-    gl.uniform1f(U.starSpd, 0.07);
+    gl.uniform1f(U.starSpd, 0.0);
     gl.uniform2f(U.mouse,   0.5, 0.5);
     gl.uniform1f(U.mouseAct, 0.0);
     gl.drawArrays(gl.TRIANGLES, 0, 3);
-    requestAnimationFrame(render);
-  });
+  }
+  requestAnimationFrame(drawStatic); /* dessin initial */
 })();
 
 /* ═══════════════════════════════════════════════════════════════
