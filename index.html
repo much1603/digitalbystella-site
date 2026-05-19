@@ -1152,34 +1152,24 @@
       </div>
       <div class="cta-right">
 
-        <!-- Message succès -->
-        <div data-fs-success style="display:none;
+        <!-- Message succès (caché par défaut) -->
+        <div id="form-success" style="display:none;
           background:rgba(196,164,107,.12); border:1px solid var(--gold);
-          border-radius:16px; padding:32px 28px; text-align:center; color:#fff;">
-          <div style="font-size:32px;margin-bottom:12px;">✅</div>
-          <p style="font-family:'Playfair Display',serif;font-size:20px;font-weight:700;margin-bottom:8px;">Message envoyé !</p>
-          <p style="font-size:14px;color:rgba(255,255,255,.65);">Merci ! Je reviens vers toi très vite.</p>
+          border-radius:16px; padding:40px 28px; text-align:center; color:#fff;">
+          <div style="font-size:40px;margin-bottom:16px;">✅</div>
+          <p style="font-family:'Playfair Display',serif;font-size:22px;font-weight:700;margin-bottom:10px;">Message bien reçu !</p>
+          <p style="font-size:14px;color:rgba(255,255,255,.65);line-height:1.7;">Merci pour ta demande.<br>Je te réponds dans les plus brefs délais. 🙏</p>
         </div>
 
-        <!-- Message erreur global -->
-        <div data-fs-error style="display:none;
-          background:rgba(220,50,50,.1); border:1px solid rgba(220,50,50,.4);
-          border-radius:12px; padding:16px 20px; margin-bottom:16px;
-          font-size:13px; color:#ff6b6b;">
-        </div>
-
+        <!-- Formulaire -->
         <form id="contact-form">
           <div class="form-row">
             <label class="form-label">Votre nom *</label>
-            <input type="text" name="nom" class="form-input" placeholder="Marie Dupont"
-              data-fs-field required>
-            <span data-fs-error="nom" style="font-size:12px;color:#ff6b6b;margin-top:4px;"></span>
+            <input type="text" name="nom" class="form-input" placeholder="Marie Dupont" required>
           </div>
           <div class="form-row">
             <label class="form-label">Votre email *</label>
-            <input type="email" name="email" class="form-input" placeholder="marie@exemple.fr"
-              data-fs-field required>
-            <span data-fs-error="email" style="font-size:12px;color:#ff6b6b;margin-top:4px;"></span>
+            <input type="email" name="email" class="form-input" placeholder="marie@exemple.fr" required>
           </div>
           <div class="form-row">
             <label class="form-label">Prestation souhaitée</label>
@@ -1193,18 +1183,48 @@
           </div>
           <div class="form-row">
             <label class="form-label">Votre message *</label>
-            <textarea name="message" class="form-textarea" placeholder="Parlez-moi de votre projet…"
-              data-fs-field required></textarea>
-            <span data-fs-error="message" style="font-size:12px;color:#ff6b6b;margin-top:4px;"></span>
+            <textarea name="message" class="form-textarea" placeholder="Parlez-moi de votre projet…" required></textarea>
           </div>
-          <button type="submit" class="form-submit" data-fs-submit-btn>Envoyer ma demande →</button>
+          <!-- Message erreur -->
+          <div id="form-error" style="display:none;
+            background:rgba(220,50,50,.1); border:1px solid rgba(220,50,50,.4);
+            border-radius:10px; padding:14px 18px; margin-bottom:14px;
+            font-size:13px; color:#ff6b6b;">
+            Une erreur s'est produite. Réessaie ou écris-moi directement par email.
+          </div>
+          <button type="submit" id="form-btn" class="form-submit">Envoyer ma demande →</button>
         </form>
 
         <script>
-          window.formspree = window.formspree || function(){ (formspree.q = formspree.q || []).push(arguments); };
-          formspree('initForm', { formElement: '#contact-form', formId: 'mlgvdvvz' });
+          document.getElementById('contact-form').addEventListener('submit', async function(e){
+            e.preventDefault();
+            const btn  = document.getElementById('form-btn');
+            const ok   = document.getElementById('form-success');
+            const err  = document.getElementById('form-error');
+            btn.textContent = 'Envoi en cours…';
+            btn.disabled = true;
+            err.style.display = 'none';
+            try {
+              const res = await fetch('https://formspree.io/f/mlgvdvvz', {
+                method: 'POST',
+                headers: { 'Accept': 'application/json' },
+                body: new FormData(this)
+              });
+              if(res.ok){
+                this.style.display = 'none';
+                ok.style.display   = 'block';
+              } else {
+                err.style.display = 'block';
+                btn.textContent   = 'Envoyer ma demande →';
+                btn.disabled      = false;
+              }
+            } catch(_){
+              err.style.display = 'block';
+              btn.textContent   = 'Envoyer ma demande →';
+              btn.disabled      = false;
+            }
+          });
         </script>
-        <script src="https://unpkg.com/@formspree/ajax@1" defer></script>
 
       </div>
     </div>
