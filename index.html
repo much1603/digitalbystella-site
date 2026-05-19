@@ -340,6 +340,64 @@
       display: grid; grid-template-columns: repeat(3,1fr); gap: 26px;
     }
 
+    /* Séparateur de catégorie */
+    .svc-category {
+      display: flex; align-items: center; gap: 20px;
+      margin: 72px 0 36px;
+    }
+    .svc-category-line {
+      flex: 1; height: 1px;
+      background: linear-gradient(90deg, transparent, rgba(255,255,255,.12), transparent);
+    }
+    .svc-category-label {
+      font-size: 10px; font-weight: 700; letter-spacing: 3.5px;
+      text-transform: uppercase; color: var(--gold);
+      white-space: nowrap;
+    }
+    .svc-category:first-of-type { margin-top: 0; }
+
+    /* Badge partenaire */
+    .partner-badge {
+      display: inline-flex; align-items: center; gap: 8px;
+      background: rgba(99,102,241,.1);
+      border: 1px solid rgba(99,102,241,.3);
+      color: #a5b4fc;
+      font-size: 10px; font-weight: 700; letter-spacing: 1.8px;
+      text-transform: uppercase;
+      padding: 7px 16px; border-radius: 100px;
+      margin-bottom: 24px; text-decoration: none;
+      transition: background .3s, border-color .3s;
+      cursor: pointer;
+    }
+    .partner-badge:hover {
+      background: rgba(99,102,241,.2);
+      border-color: rgba(99,102,241,.6);
+    }
+    .partner-badge .dot {
+      width: 6px; height: 6px; border-radius: 50%;
+      background: #818cf8; flex-shrink: 0;
+      animation: pulse-dot 2s ease-in-out infinite;
+    }
+    @keyframes pulse-dot {
+      0%,100%{ opacity:1; transform:scale(1); }
+      50%{ opacity:.5; transform:scale(.7); }
+    }
+
+    /* Carte partenaire (variante violette) */
+    .svc-card--partner {
+      border-color: rgba(99,102,241,.15);
+      background: rgba(99,102,241,.04);
+    }
+    .svc-card--partner::before {
+      background: linear-gradient(145deg, rgba(99,102,241,.08), transparent);
+    }
+    .svc-card--partner:hover {
+      box-shadow: 0 36px 80px rgba(99,102,241,.2);
+      border-color: rgba(99,102,241,.5);
+    }
+    .svc-card--partner .svc-num { color: rgba(99,102,241,.12); }
+    .svc-card--partner .svc-list li::before { color: #818cf8; }
+
     .svc-card {
       border: 1px solid rgba(255,255,255,.08);
       border-radius: 28px;
@@ -828,7 +886,8 @@
 
       /* services */
       .services-head { margin-bottom: 48px; }
-      .svc-grid { grid-template-columns: 1fr; gap: 18px; }
+      .svc-grid { grid-template-columns: 1fr !important; gap: 18px; }
+      .svc-category { margin: 48px 0 28px; }
       .svc-card { padding: 40px 28px; }
       .svc-num { font-size: 52px; }
       .svc-title { font-size: 22px; }
@@ -1045,6 +1104,14 @@
     <div class="rule rule-c r"></div>
   </div>
   <div class="container">
+
+    <!-- ── Catégorie 1 : Création Web ───────────────────────── -->
+    <div class="svc-category r">
+      <div class="svc-category-line"></div>
+      <span class="svc-category-label">✦ Création Web</span>
+      <div class="svc-category-line"></div>
+    </div>
+
     <div class="svc-grid">
 
       <a href="#contact" class="svc-card r" style="display:block;text-decoration:none;cursor:pointer;">
@@ -1075,6 +1142,57 @@
       </a>
 
     </div>
+
+    <!-- ── Catégorie 2 : Services Avancés (Elif Agency) ─────── -->
+    <div class="svc-category r">
+      <div class="svc-category-line"></div>
+      <span class="svc-category-label">✦ Services Avancés</span>
+      <div class="svc-category-line"></div>
+    </div>
+
+    <!-- Intro partenariat -->
+    <div class="r" style="text-align:center;margin-bottom:44px;">
+      <p style="font-size:15px;color:rgba(255,255,255,.5);line-height:1.8;max-width:560px;margin:0 auto 20px;">
+        Ces services sont proposés en collaboration avec notre agence partenaire.
+      </p>
+      <a href="https://elifagency.com" target="_blank" rel="noopener" class="partner-badge">
+        <span class="dot"></span>
+        En partenariat avec Elif Agency
+      </a>
+    </div>
+
+    <div class="svc-grid" style="grid-template-columns:repeat(2,1fr);">
+
+      <a href="#contact" class="svc-card svc-card--partner r" style="display:block;text-decoration:none;cursor:pointer;">
+        <div class="svc-num">04</div>
+        <div class="svc-icon">🤖</div>
+        <h3 class="svc-title">Automatisation IA & Applications</h3>
+        <div class="svc-price" style="color:#a5b4fc;font-size:28px;">Sur devis <span style="color:rgba(255,255,255,.35);">• selon projet</span></div>
+        <ul class="svc-list">
+          <li>Automatisation de tâches répétitives avec l'IA</li>
+          <li>Création d'applications métier sur-mesure</li>
+          <li>Intégration d'agents IA dans vos processus</li>
+          <li>Gain de temps et réduction des coûts opérationnels</li>
+        </ul>
+        <span class="svc-btn" style="margin-top:8px;color:#a5b4fc;">Je veux automatiser mon activité →</span>
+      </a>
+
+      <a href="#contact" class="svc-card svc-card--partner r d1" style="display:block;text-decoration:none;cursor:pointer;">
+        <div class="svc-num">05</div>
+        <div class="svc-icon">📣</div>
+        <h3 class="svc-title">Gestion Publicitaire Google & Meta Ads</h3>
+        <div class="svc-price" style="color:#a5b4fc;font-size:28px;">Sur devis <span style="color:rgba(255,255,255,.35);">• selon budget</span></div>
+        <ul class="svc-list">
+          <li>Création et gestion de campagnes Google Ads</li>
+          <li>Publicités Meta Ads (Facebook & Instagram)</li>
+          <li>Ciblage précis de votre audience idéale</li>
+          <li>Suivi des performances et optimisation continue</li>
+        </ul>
+        <span class="svc-btn" style="margin-top:8px;color:#a5b4fc;">Je veux lancer mes publicités →</span>
+      </a>
+
+    </div>
+
   </div>
 </section>
 
