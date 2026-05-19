@@ -1151,29 +1151,61 @@
         </a>
       </div>
       <div class="cta-right">
-        <div class="form-row">
-          <label class="form-label">Votre nom *</label>
-          <input type="text" class="form-input" placeholder="Marie Dupont">
+
+        <!-- Message succès -->
+        <div data-fs-success style="display:none;
+          background:rgba(196,164,107,.12); border:1px solid var(--gold);
+          border-radius:16px; padding:32px 28px; text-align:center; color:#fff;">
+          <div style="font-size:32px;margin-bottom:12px;">✅</div>
+          <p style="font-family:'Playfair Display',serif;font-size:20px;font-weight:700;margin-bottom:8px;">Message envoyé !</p>
+          <p style="font-size:14px;color:rgba(255,255,255,.65);">Merci ! Je reviens vers toi très vite.</p>
         </div>
-        <div class="form-row">
-          <label class="form-label">Votre email *</label>
-          <input type="email" class="form-input" placeholder="marie@exemple.fr">
+
+        <!-- Message erreur global -->
+        <div data-fs-error style="display:none;
+          background:rgba(220,50,50,.1); border:1px solid rgba(220,50,50,.4);
+          border-radius:12px; padding:16px 20px; margin-bottom:16px;
+          font-size:13px; color:#ff6b6b;">
         </div>
-        <div class="form-row">
-          <label class="form-label">Prestation souhaitée</label>
-          <select class="form-select">
-            <option value="" disabled selected>Choisissez une prestation</option>
-            <option>Site WordPress vitrine — 500€</option>
-            <option>Site e-commerce — à partir de 550€</option>
-            <option>Optimisation SEO — 150€</option>
-            <option>Je ne sais pas encore</option>
-          </select>
-        </div>
-        <div class="form-row">
-          <label class="form-label">Votre message *</label>
-          <textarea class="form-textarea" placeholder="Parlez-moi de votre projet…"></textarea>
-        </div>
-        <button class="form-submit">Envoyer ma demande →</button>
+
+        <form id="contact-form">
+          <div class="form-row">
+            <label class="form-label">Votre nom *</label>
+            <input type="text" name="nom" class="form-input" placeholder="Marie Dupont"
+              data-fs-field required>
+            <span data-fs-error="nom" style="font-size:12px;color:#ff6b6b;margin-top:4px;"></span>
+          </div>
+          <div class="form-row">
+            <label class="form-label">Votre email *</label>
+            <input type="email" name="email" class="form-input" placeholder="marie@exemple.fr"
+              data-fs-field required>
+            <span data-fs-error="email" style="font-size:12px;color:#ff6b6b;margin-top:4px;"></span>
+          </div>
+          <div class="form-row">
+            <label class="form-label">Prestation souhaitée</label>
+            <select name="prestation" class="form-select">
+              <option value="" disabled selected>Choisissez une prestation</option>
+              <option>Site WordPress vitrine — 500€</option>
+              <option>Site e-commerce — à partir de 550€</option>
+              <option>Optimisation SEO — 150€</option>
+              <option>Je ne sais pas encore</option>
+            </select>
+          </div>
+          <div class="form-row">
+            <label class="form-label">Votre message *</label>
+            <textarea name="message" class="form-textarea" placeholder="Parlez-moi de votre projet…"
+              data-fs-field required></textarea>
+            <span data-fs-error="message" style="font-size:12px;color:#ff6b6b;margin-top:4px;"></span>
+          </div>
+          <button type="submit" class="form-submit" data-fs-submit-btn>Envoyer ma demande →</button>
+        </form>
+
+        <script>
+          window.formspree = window.formspree || function(){ (formspree.q = formspree.q || []).push(arguments); };
+          formspree('initForm', { formElement: '#contact-form', formId: 'mlgvdvvz' });
+        </script>
+        <script src="https://unpkg.com/@formspree/ajax@1" defer></script>
+
       </div>
     </div>
   </div>
