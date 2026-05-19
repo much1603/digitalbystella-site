@@ -98,7 +98,7 @@
       overflow: hidden;
     }
 
-    #heroVideo {
+    #heroVideo, #heroVideoMobile {
       position: absolute;
       inset: 0;
       width: 100%;
@@ -107,6 +107,9 @@
       object-position: center top;
       clip-path: inset(0 0 10% 0);
     }
+    /* desktop : vidéo desktop visible, mobile cachée */
+    #heroVideo       { display: block; }
+    #heroVideoMobile { display: none; }
 
     .hero-overlay {
       position: absolute;
@@ -785,10 +788,12 @@
     }
 
     @media (max-width:780px) {
-      /* video — on mobile on recadre pour voir le geste */
-      #heroVideo {
-        object-position: 55% top;
-        clip-path: inset(0 0 6% 0);
+      /* mobile : on cache la vidéo desktop, on affiche la mobile */
+      #heroVideo       { display: none; }
+      #heroVideoMobile {
+        display: block;
+        object-position: center center;
+        clip-path: inset(0 0 0 0);
       }
 
       /* nav */
@@ -945,8 +950,13 @@
 
 <!-- ══ HERO ════════════════════════════════════════ -->
 <section id="hero">
+  <!-- Vidéo desktop -->
   <video id="heroVideo" autoplay muted loop playsinline>
     <source src="kling_20260518_作品_donne_vie__1581_0.mp4" type="video/mp4">
+  </video>
+  <!-- Vidéo mobile uniquement -->
+  <video id="heroVideoMobile" autoplay muted loop playsinline>
+    <source src="hero-mobile.mp4" type="video/mp4">
   </video>
   <div class="hero-overlay"></div>
   <div class="hero-content">
