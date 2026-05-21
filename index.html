@@ -1497,6 +1497,7 @@
         </div>
         <p id="error-text"></p>
         <a href="mailto:stella.web@yahoo.com">stella.web@yahoo.com</a>
+        <button type="button" id="btn-retry" style="margin-top:18px;background:none;border:1px solid rgba(255,255,255,.25);color:rgba(255,255,255,.75);padding:10px 24px;border-radius:8px;cursor:pointer;font-size:14px;">← Réessayer</button>
       </div>
 
     </div>
@@ -1519,6 +1520,8 @@
     const successText = document.getElementById('success-text');
     const successMeet = document.getElementById('success-meet');
     const errorText = document.getElementById('error-text');
+
+    document.getElementById('btn-retry').addEventListener('click', () => show('picking'));
 
     let selected = null;
     let slotsRaw = [];
@@ -1594,9 +1597,10 @@
       if (ctaBtn.disabled) return;
       const form = states.picking;
       const payload = { action: 'checkout', start: selected };
-      ['firstName','lastName','email','phone','company','service','message'].forEach(n => {
-        const el = form.querySelector('[name="'+n+'"]');
-        if (el) payload[n] = el.value.trim();
+      const nameMap = { firstName:'prenom', lastName:'nom', email:'email', phone:'telephone', service:'prestation', message:'message' };
+      Object.entries(nameMap).forEach(([html, php]) => {
+        const el = form.querySelector('[name="'+html+'"]');
+        if (el) payload[php] = el.value.trim();
       });
       show('redirecting');
       try {
