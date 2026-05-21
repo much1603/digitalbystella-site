@@ -1,0 +1,57 @@
+<?php
+/**
+ * Configuration Digital by Stella — booking visio Google Meet + Stripe.
+ *
+ * 1. Copier ce fichier sur le serveur À L'EXTÉRIEUR du web root :
+ *      <domaine>/private/booking.php   (à côté de public_html, pas dedans)
+ * 2. Compléter chaque clé.
+ * 3. Le fichier booking.php (dans le web root) le charge automatiquement.
+ *
+ * Voir BOOKING-README.md pour le pas-à-pas (Google Cloud + Stripe + Webhook).
+ */
+
+return [
+  // ---------- Google Cloud OAuth2 ----------
+  // Console: https://console.cloud.google.com/ → APIs & Services → Credentials
+  // Type d'identifiant : "OAuth client ID" → "Web application".
+  // Refresh token généré via https://developers.google.com/oauthplayground
+  // avec le scope https://www.googleapis.com/auth/calendar
+  'google_client_id'      => 'REMPLACER__client_id_termine_par.apps.googleusercontent.com',
+  'google_client_secret'  => 'REMPLACER__client_secret_format_GOCSPX-...',
+  'google_refresh_token'  => 'REMPLACER__refresh_token_format_1//0...',
+
+  // 'primary' = calendrier principal du compte ayant autorisé l'app.
+  'google_calendar_id'    => 'primary',
+
+  // Organisateur affiché et destinataire des invitations Calendar.
+  'organizer_email'       => 'stella.web@yahoo.com',
+  'organizer_name'        => 'Digital by Stella',
+
+  // ---------- Stripe ----------
+  // Dashboard Stripe → Developers → API keys (Secret key, mode Test pour démarrer).
+  'stripe_secret'         => 'REMPLACER__secret_key_Stripe_commence_par_sk_test_ou_sk_live',
+
+  // Webhook : Developers → Webhooks → Add endpoint
+  //   URL  : https://digitalbystella.com/booking.php
+  //   Events : checkout.session.completed, checkout.session.async_payment_succeeded
+  //   Signing secret (whsec_…) à coller ici.
+  'stripe_webhook_secret' => 'REMPLACER__signing_secret_Stripe_commence_par_whsec_',
+
+  // ---------- Site ----------
+  'site_url'              => 'https://digitalbystella.com',
+  'price_cents'           => 1900,      // 19 €
+  'currency'              => 'eur',
+  'product_name'          => 'Consultation Digital by Stella — appel visio 30 min',
+  // Stripe revient sur la home : le widget de l'index.html détecte ?session_id et finalise sur place.
+  'success_path'          => '/#contact',
+  'cancel_path'           => '/?canceled=1#contact',
+
+  // ---------- Disponibilités ----------
+  'tz'                    => 'Europe/Paris',
+  'days'                  => [1, 2, 3, 4, 5], // 1=lundi … 7=dimanche
+  'start_hour'            => 9,
+  'end_hour'              => 18,
+  'lead_hours'            => 12,  // délai minimum avant le 1er créneau proposé
+  'horizon_days'          => 14,  // visibilité de l'agenda
+  'duration_min'          => 30,
+];

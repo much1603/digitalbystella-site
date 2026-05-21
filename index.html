@@ -523,93 +523,223 @@
     }
     .engage-text { font-size: 14px; line-height: 1.8; color: rgba(255,255,255,.48); }
 
-    /* ═══ CONTACT / CTA ══════════════════════════════ */
-    #contact { background: var(--white); }
-
-    .cta-box {
-      background: linear-gradient(135deg, var(--deep) 0%, var(--plum) 100%);
-      border-radius: 36px;
-      overflow: hidden;
-      display: grid; grid-template-columns: 1fr 1fr;
+    /* ═══ CONTACT / WIDGET RÉSERVATION VISIO ════════════ */
+    #contact {
+      background: linear-gradient(180deg, var(--white) 0%, var(--deep) 100%);
+      padding: 130px 80px;
     }
+    #contact .container { max-width: 760px; margin: 0 auto; }
 
-    .cta-left {
-      padding: 100px 72px;
+    .booking-card {
       position: relative;
+      padding: 38px;
+      border-radius: 36px;
+      border: 1px solid rgba(255,255,255,.10);
+      background: rgba(255,255,255,.02);
+      box-shadow: 0 50px 120px -40px rgba(0,0,0,.75);
+      overflow: hidden;
     }
-    .cta-left::after {
+    .booking-card::before {
       content: '';
-      position: absolute; inset: 0;
-      background: radial-gradient(ellipse at 0% 100%, rgba(196,164,107,.15) 0%, transparent 60%);
+      position: absolute; inset: -1px;
+      background: linear-gradient(135deg, rgba(196,86,126,.45) 0%, rgba(155,107,191,.18) 45%, transparent 75%);
+      border-radius: inherit;
+      padding: 1px;
+      -webkit-mask: linear-gradient(#000 0 0) content-box, linear-gradient(#000 0 0);
+      -webkit-mask-composite: xor; mask-composite: exclude;
       pointer-events: none;
     }
-    .cta-left .h2 { color: #fff; }
-    .cta-left .rule { background: var(--gold); }
-    .cta-left p {
-      font-size: 16px; line-height: 1.8; color: rgba(255,255,255,.62);
-      margin-top: 18px; margin-bottom: 44px;
-    }
 
-    .cta-right {
-      padding: 100px 72px;
-      background: rgba(255,255,255,.04);
-      display: flex; flex-direction: column; gap: 18px; justify-content: center;
+    .booking-head {
+      display: flex; align-items: center; gap: 14px;
+      margin-bottom: 28px;
     }
-
-    .form-row { display: flex; flex-direction: column; gap: 7px; }
-    .form-label { font-size: 11px; font-weight: 600; letter-spacing: 1.5px; text-transform: uppercase; color: rgba(255,255,255,.55); }
-    .form-input {
-      background: rgba(255,255,255,.07);
-      border: 1px solid rgba(255,255,255,.12);
+    .booking-head-icon {
+      width: 44px; height: 44px; flex: 0 0 44px;
       border-radius: 12px;
-      padding: 14px 18px;
-      font-family: 'Inter', sans-serif;
-      font-size: 14px; color: #fff;
-      outline: none; transition: border-color .3s;
+      background: rgba(196,86,126,.12);
+      border: 1px solid rgba(196,86,126,.30);
+      color: var(--gold);
+      display: grid; place-items: center;
     }
-    .form-input::placeholder { color: rgba(255,255,255,.3); }
-    .form-input:focus { border-color: var(--gold); }
-
-    .form-select {
-      background: rgba(255,255,255,.07);
-      border: 1px solid rgba(255,255,255,.12);
-      border-radius: 12px;
-      padding: 14px 18px;
-      font-family: 'Inter', sans-serif;
-      font-size: 14px; color: rgba(255,255,255,.7);
-      outline: none; transition: border-color .3s;
-      cursor: pointer;
-    }
-    .form-select option { background: var(--navy); color: #fff; }
-    .form-select:focus { border-color: var(--gold); }
-
-    .form-textarea {
-      background: rgba(255,255,255,.07);
-      border: 1px solid rgba(255,255,255,.12);
-      border-radius: 12px;
-      padding: 14px 18px;
-      font-family: 'Inter', sans-serif;
-      font-size: 14px; color: #fff;
-      outline: none; transition: border-color .3s;
-      resize: vertical; min-height: 110px;
-    }
-    .form-textarea::placeholder { color: rgba(255,255,255,.3); }
-    .form-textarea:focus { border-color: var(--gold); }
-
-    .form-submit {
-      background: var(--gold);
+    .booking-head h2 {
+      font-family: 'Playfair Display', serif;
+      font-size: clamp(28px, 3.6vw, 40px);
+      font-weight: 700;
+      line-height: 1.05;
       color: #fff;
-      padding: 16px;
-      border: none; border-radius: 100px;
-      font-family: 'Inter', sans-serif;
-      font-size: 11.5px; font-weight: 600;
-      letter-spacing: 2px; text-transform: uppercase;
-      cursor: pointer; transition: background .3s, box-shadow .3s;
-      margin-top: 4px;
+      margin: 0;
     }
-    .form-submit:hover {
-      background: var(--gold-dark);
-      box-shadow: 0 14px 40px rgba(168,136,58,.38);
+    .booking-head h2 em {
+      font-style: italic; color: var(--gold);
+      background: linear-gradient(120deg, var(--gold-pale) 0%, var(--gold) 60%, var(--gold-dark) 100%);
+      -webkit-background-clip: text; background-clip: text;
+      -webkit-text-fill-color: transparent; color: transparent;
+    }
+    .booking-head .sub {
+      font-family: 'JetBrains Mono', ui-monospace, monospace;
+      font-size: 11px; letter-spacing: .14em; text-transform: uppercase;
+      color: rgba(255,255,255,.42); margin-top: 6px;
+    }
+
+    .booking-state { display: block; }
+
+    .booking-spinner {
+      padding: 56px 0; text-align: center;
+      color: rgba(255,255,255,.5);
+    }
+    .booking-spinner .ring {
+      display: inline-block;
+      width: 32px; height: 32px; border-radius: 50%;
+      border: 2px solid rgba(255,255,255,.15);
+      border-top-color: var(--gold);
+      animation: spin 1s linear infinite;
+      margin-bottom: 14px;
+    }
+    .booking-spinner .label {
+      display: block;
+      font-family: 'JetBrains Mono', ui-monospace, monospace;
+      font-size: 12px; letter-spacing: .16em; text-transform: uppercase;
+    }
+    @keyframes spin { to { transform: rotate(360deg); } }
+
+    .booking-error {
+      display: flex; align-items: center; gap: 8px;
+      font-family: 'JetBrains Mono', ui-monospace, monospace;
+      font-size: 12px; color: #ff8a8a;
+      margin-bottom: 4px;
+    }
+
+    .b-grid {
+      display: grid; grid-template-columns: 1fr 1fr; gap: 16px;
+    }
+    .b-grid .full { grid-column: 1 / -1; }
+    .b-field { display: flex; flex-direction: column; gap: 8px; }
+    .b-label {
+      font-family: 'JetBrains Mono', ui-monospace, monospace;
+      font-size: 11px; letter-spacing: .14em; text-transform: uppercase;
+      color: rgba(255,255,255,.5);
+    }
+    .b-label .req { color: var(--gold); }
+    .b-input, .b-select, .b-textarea {
+      width: 100%;
+      padding: 12px 16px;
+      border-radius: 16px;
+      background: rgba(255,255,255,.04);
+      border: 1px solid rgba(255,255,255,.10);
+      color: #fff; font-family: 'Inter', sans-serif; font-size: 14px;
+      outline: none;
+      transition: border-color .25s ease, background-color .25s ease;
+    }
+    .b-input::placeholder, .b-textarea::placeholder { color: rgba(255,255,255,.3); }
+    .b-input:focus, .b-select:focus, .b-textarea:focus { border-color: rgba(196,86,126,.55); }
+    .b-select option { background: var(--navy); color: #fff; }
+    .b-textarea { resize: vertical; min-height: 92px; }
+
+    .slot-scroll {
+      max-height: 300px; overflow-y: auto; padding-right: 4px;
+      display: flex; flex-direction: column; gap: 20px;
+      scrollbar-width: thin; scrollbar-color: var(--gold) transparent;
+    }
+    .slot-scroll::-webkit-scrollbar { width: 6px; }
+    .slot-scroll::-webkit-scrollbar-thumb { background: var(--gold); border-radius: 3px; }
+    .slot-day-head {
+      display: flex; align-items: center; gap: 8px;
+      font-family: 'JetBrains Mono', ui-monospace, monospace;
+      font-size: 11px; letter-spacing: .16em; text-transform: uppercase;
+      color: rgba(255,255,255,.45);
+      margin-bottom: 12px;
+    }
+    .slot-day-head svg { color: var(--gold); }
+    .slot-grid {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 8px;
+    }
+    @media (min-width: 540px) { .slot-grid { grid-template-columns: repeat(4, 1fr); } }
+    .slot-pill {
+      padding: 10px 12px;
+      border-radius: 12px;
+      border: 1px solid rgba(255,255,255,.10);
+      background: rgba(255,255,255,.03);
+      color: rgba(255,255,255,.80);
+      font-family: 'Inter', sans-serif; font-size: 14px;
+      cursor: pointer;
+      transition: all .2s ease;
+    }
+    .slot-pill:hover {
+      border-color: rgba(196,86,126,.55);
+      background: rgba(196,86,126,.10);
+      color: #fff;
+    }
+    .slot-pill.active {
+      border-color: rgba(196,86,126,.70);
+      background: rgba(196,86,126,.18);
+      color: #fff;
+    }
+
+    .booking-cta {
+      width: 100%;
+      display: inline-flex; align-items: center; justify-content: center;
+      gap: 12px;
+      padding: 16px 26px;
+      border: none; border-radius: 999px;
+      background: #fff; color: #0D0820;
+      font-family: 'Inter', sans-serif; font-size: 14px; font-weight: 600;
+      letter-spacing: .2px;
+      cursor: pointer;
+      box-shadow: 0 18px 50px rgba(196,86,126,.30);
+      transition: transform .2s ease, box-shadow .2s ease, opacity .2s ease;
+    }
+    .booking-cta:not(:disabled):hover { transform: translateY(-2px) scale(1.01); }
+    .booking-cta:disabled { opacity: .4; cursor: not-allowed; box-shadow: none; }
+
+    .booking-foot {
+      font-family: 'JetBrains Mono', ui-monospace, monospace;
+      text-align: center; color: rgba(255,255,255,.4);
+      font-size: 11px; letter-spacing: .04em; line-height: 1.7;
+    }
+
+    .success-card { text-align: center; padding: 24px 0 8px; }
+    .success-card .check {
+      width: 64px; height: 64px; margin: 0 auto 20px;
+      border-radius: 50%;
+      background: rgba(196,86,126,.15);
+      border: 1px solid rgba(196,86,126,.40);
+      color: var(--gold);
+      display: grid; place-items: center;
+    }
+    .success-card h3 {
+      font-family: 'Playfair Display', serif;
+      font-size: clamp(28px, 3.4vw, 38px); line-height: 1.1;
+      color: #fff; margin-bottom: 14px;
+    }
+    .success-card h3 em {
+      font-style: italic;
+      background: linear-gradient(120deg, var(--gold-pale) 0%, var(--gold) 60%, var(--gold-dark) 100%);
+      -webkit-background-clip: text; background-clip: text;
+      color: transparent;
+    }
+    .success-card p { color: rgba(255,255,255,.65); font-size: 15px; line-height: 1.7; margin-bottom: 24px; }
+
+    .error-card { text-align: center; padding: 48px 0; }
+    .error-card .alert {
+      width: 56px; height: 56px; margin: 0 auto 18px;
+      border-radius: 50%;
+      background: rgba(220,80,80,.10); border: 1px solid rgba(220,80,80,.30);
+      color: #ff8a8a;
+      display: grid; place-items: center;
+    }
+    .error-card p { color: rgba(255,255,255,.70); font-size: 14px; margin-bottom: 6px; }
+    .error-card a {
+      font-family: 'JetBrains Mono', ui-monospace, monospace;
+      color: var(--gold); text-decoration: none; font-size: 13px;
+    }
+
+    @media (max-width: 720px) {
+      #contact { padding: 90px 20px; }
+      .booking-card { padding: 26px 22px; }
+      .b-grid { grid-template-columns: 1fr; }
     }
 
     /* ═══ FOOTER ══════════════════════════════════════ */
@@ -1258,95 +1388,314 @@
 <!-- ══ CONTACT ════════════════════════════════════ -->
 <section id="contact" class="section">
   <div class="container">
-    <div class="cta-box r">
-      <div class="cta-left">
-        <p class="overline" style="color:var(--gold-pale)">Démarrez votre projet aujourd'hui !</p>
-        <h2 class="h2 h2-white">Consultation<br><em>gratuite</em></h2>
-        <div class="rule"></div>
-        <p>Contactez-moi pour une consultation gratuite et découvrez comment je peux vous aider à réussir en ligne.</p>
-        <a href="mailto:stella.web@yahoo.com" class="btn-gold" style="display:inline-flex;align-items:center;gap:10px;">
-          ✉️ stella.web@yahoo.com
-        </a>
-      </div>
-      <div class="cta-right">
+    <div class="booking-card r">
 
-        <!-- Message succès (caché par défaut) -->
-        <div id="form-success" style="display:none;
-          background:rgba(196,164,107,.12); border:1px solid var(--gold);
-          border-radius:16px; padding:40px 28px; text-align:center; color:#fff;">
-          <div style="font-size:40px;margin-bottom:16px;">✅</div>
-          <p style="font-family:'Playfair Display',serif;font-size:22px;font-weight:700;margin-bottom:10px;">Message bien reçu !</p>
-          <p style="font-size:14px;color:rgba(255,255,255,.65);line-height:1.7;">Merci pour ta demande.<br>Je te réponds dans les plus brefs délais. 🙏</p>
+      <div class="booking-head">
+        <div class="booking-head-icon" aria-hidden="true">
+          <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="m22 8-6 4 6 4V8Z"/><rect width="14" height="12" x="2" y="6" rx="2" ry="2"/></svg>
+        </div>
+        <div style="flex:1;min-width:0;">
+          <h2>Réserver un <em>appel visio</em></h2>
+          <p class="sub" id="booking-sub">30 min · visio Google Meet · 19 €</p>
+        </div>
+      </div>
+
+      <div class="booking-state" id="state-loading">
+        <div class="booking-spinner">
+          <span class="ring" aria-hidden="true"></span>
+          <span class="label">Chargement des créneaux…</span>
+        </div>
+      </div>
+
+      <div class="booking-state" id="state-redirecting" style="display:none;">
+        <div class="booking-spinner">
+          <span class="ring" aria-hidden="true"></span>
+          <span class="label">Ouverture du paiement sécurisé…</span>
+        </div>
+      </div>
+
+      <div class="booking-state" id="state-finalizing" style="display:none;">
+        <div class="booking-spinner">
+          <span class="ring" aria-hidden="true"></span>
+          <span class="label">Vérification du paiement & création du RDV…</span>
+        </div>
+      </div>
+
+      <form class="booking-state" id="state-picking" style="display:none;gap:24px;flex-direction:column;">
+        <div class="booking-error" id="booking-err" style="display:none;">
+          <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"/><line x1="12" x2="12" y1="8" y2="12"/><line x1="12" x2="12.01" y1="16" y2="16"/></svg>
+          <span></span>
         </div>
 
-        <!-- Formulaire -->
-        <form id="contact-form">
-          <div class="form-row">
-            <label class="form-label">Votre nom *</label>
-            <input type="text" name="nom" class="form-input" placeholder="Marie Dupont" required>
+        <div class="b-grid">
+          <div class="b-field">
+            <label class="b-label" for="f-firstName">Prénom<span class="req">*</span></label>
+            <input id="f-firstName" name="firstName" type="text" class="b-input" required autocomplete="given-name">
           </div>
-          <div class="form-row">
-            <label class="form-label">Votre email *</label>
-            <input type="email" name="email" class="form-input" placeholder="marie@exemple.fr" required>
+          <div class="b-field">
+            <label class="b-label" for="f-lastName">Nom<span class="req">*</span></label>
+            <input id="f-lastName" name="lastName" type="text" class="b-input" required autocomplete="family-name">
           </div>
-          <div class="form-row">
-            <label class="form-label">Prestation souhaitée</label>
-            <select name="prestation" class="form-select">
-              <option value="" disabled selected>Choisissez une prestation</option>
-              <option>Site WordPress vitrine — 500€</option>
-              <option>Site e-commerce — à partir de 550€</option>
-              <option>Optimisation SEO — 150€</option>
-              <option>Je ne sais pas encore</option>
+          <div class="b-field">
+            <label class="b-label" for="f-email">Email<span class="req">*</span></label>
+            <input id="f-email" name="email" type="email" class="b-input" required autocomplete="email">
+          </div>
+          <div class="b-field">
+            <label class="b-label" for="f-phone">Téléphone</label>
+            <input id="f-phone" name="phone" type="tel" class="b-input" autocomplete="tel">
+          </div>
+          <div class="b-field full">
+            <label class="b-label" for="f-company">Entreprise</label>
+            <input id="f-company" name="company" type="text" class="b-input">
+          </div>
+          <div class="b-field full">
+            <label class="b-label" for="f-service">Service souhaité</label>
+            <select id="f-service" name="service" class="b-select">
+              <option value="">— Sélectionner —</option>
+              <option>Site WordPress vitrine</option>
+              <option>Site e-commerce</option>
+              <option>Optimisation SEO</option>
+              <option>Refonte de site</option>
+              <option>Autre / pas encore défini</option>
             </select>
           </div>
-          <div class="form-row">
-            <label class="form-label">Votre message *</label>
-            <textarea name="message" class="form-textarea" placeholder="Parlez-moi de votre projet…" required></textarea>
-          </div>
-          <!-- Message erreur -->
-          <div id="form-error" style="display:none;
-            background:rgba(220,50,50,.1); border:1px solid rgba(220,50,50,.4);
-            border-radius:10px; padding:14px 18px; margin-bottom:14px;
-            font-size:13px; color:#ff6b6b;">
-            Une erreur s'est produite. Réessaie ou écris-moi directement par email.
-          </div>
-          <button type="submit" id="form-btn" class="form-submit">Envoyer ma demande →</button>
-        </form>
+        </div>
 
-        <script>
-          document.getElementById('contact-form').addEventListener('submit', async function(e){
-            e.preventDefault();
-            const btn  = document.getElementById('form-btn');
-            const ok   = document.getElementById('form-success');
-            const err  = document.getElementById('form-error');
-            btn.textContent = 'Envoi en cours…';
-            btn.disabled = true;
-            err.style.display = 'none';
-            try {
-              const res = await fetch('https://formspree.io/f/mlgvdvvz', {
-                method: 'POST',
-                headers: { 'Accept': 'application/json' },
-                body: new FormData(this)
-              });
-              if(res.ok){
-                this.style.display = 'none';
-                ok.style.display   = 'block';
-              } else {
-                err.style.display = 'block';
-                btn.textContent   = 'Envoyer ma demande →';
-                btn.disabled      = false;
-              }
-            } catch(_){
-              err.style.display = 'block';
-              btn.textContent   = 'Envoyer ma demande →';
-              btn.disabled      = false;
-            }
-          });
-        </script>
+        <div class="b-field">
+          <label class="b-label" for="f-message">Votre message</label>
+          <textarea id="f-message" name="message" class="b-textarea" rows="3" placeholder="En quelques mots, votre activité, vos objectifs, votre échéance…"></textarea>
+        </div>
 
+        <div class="b-field">
+          <label class="b-label">Choisissez un créneau<span class="req">*</span></label>
+          <div class="slot-scroll" id="slot-scroll"></div>
+        </div>
+
+        <button type="submit" id="booking-cta" class="booking-cta" disabled>
+          <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect width="18" height="11" x="3" y="11" rx="2" ry="2"/><path d="M7 11V7a5 5 0 0 1 10 0v4"/></svg>
+          Continuer vers le paiement
+          <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><line x1="5" x2="19" y1="12" y2="12"/><polyline points="12 5 19 12 12 19"/></svg>
+        </button>
+        <p class="booking-foot">Paiement sécurisé par Stripe. Le créneau n'est réservé<br class="hide-sm"> qu'une fois le paiement confirmé.</p>
+      </form>
+
+      <div class="booking-state success-card" id="state-success" style="display:none;">
+        <div class="check" aria-hidden="true">
+          <svg width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"/></svg>
+        </div>
+        <h3>Réservation <em>confirmée</em> !</h3>
+        <p id="success-text">Paiement reçu. Une invitation avec le lien Google Meet vient de vous être envoyée par email.</p>
+        <a id="success-meet" href="#" target="_blank" rel="noopener noreferrer" class="booking-cta" style="width:auto;display:none;">
+          <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="m22 8-6 4 6 4V8Z"/><rect width="14" height="12" x="2" y="6" rx="2" ry="2"/></svg>
+          Rejoindre la réunion Google Meet
+        </a>
       </div>
+
+      <div class="booking-state error-card" id="state-error" style="display:none;">
+        <div class="alert" aria-hidden="true">
+          <svg width="26" height="26" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"/><line x1="12" x2="12" y1="8" y2="12"/><line x1="12" x2="12.01" y1="16" y2="16"/></svg>
+        </div>
+        <p id="error-text"></p>
+        <a href="mailto:stella.web@yahoo.com">stella.web@yahoo.com</a>
+      </div>
+
     </div>
   </div>
+
+  <script>
+  (function(){
+    const ENDPOINT = 'booking.php';
+    const PRICE_LABEL = '19 €';
+    const dayFmt   = new Intl.DateTimeFormat('fr-FR', { weekday: 'short', day: 'numeric', month: 'long', timeZone: 'Europe/Paris' });
+    const timeFmt  = new Intl.DateTimeFormat('fr-FR', { hour: '2-digit', minute: '2-digit', timeZone: 'Europe/Paris' });
+    const dayKeyFmt = new Intl.DateTimeFormat('fr-CA', { year: 'numeric', month: '2-digit', day: '2-digit', timeZone: 'Europe/Paris' });
+
+    const states = ['loading','picking','redirecting','finalizing','success','error']
+      .reduce((acc, k) => (acc[k] = document.getElementById('state-' + k), acc), {});
+    const errBox = document.getElementById('booking-err');
+    const ctaBtn = document.getElementById('booking-cta');
+    const slotScroll = document.getElementById('slot-scroll');
+    const sub = document.getElementById('booking-sub');
+    const successText = document.getElementById('success-text');
+    const successMeet = document.getElementById('success-meet');
+    const errorText = document.getElementById('error-text');
+
+    let selected = null;
+    let slotsRaw = [];
+
+    function show(step) {
+      for (const k of Object.keys(states)) {
+        if (!states[k]) continue;
+        states[k].style.display = (k === step) ? (k === 'picking' ? 'flex' : 'block') : 'none';
+      }
+    }
+    function showError(msg) {
+      errorText.textContent = msg || "Une erreur est survenue. Écrivez-nous à stella.web@yahoo.com.";
+      show('error');
+    }
+    function inlineError(msg) {
+      if (!msg) { errBox.style.display = 'none'; return; }
+      errBox.style.display = 'flex';
+      errBox.querySelector('span').textContent = msg;
+    }
+    function formatPrice(cents, currency){
+      return (cents/100).toLocaleString('fr-FR', { style: 'currency', currency: currency || 'eur', minimumFractionDigits: cents % 100 === 0 ? 0 : 2 });
+    }
+
+    function updateCtaState() {
+      const form = states.picking;
+      const required = ['firstName','lastName','email'].every(name => form.querySelector('[name="'+name+'"]').value.trim());
+      const emailOk = /^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(form.querySelector('[name="email"]').value.trim());
+      ctaBtn.disabled = !(required && emailOk && selected);
+    }
+
+    function renderSlots(list) {
+      slotScroll.innerHTML = '';
+      const groups = new Map();
+      for (const iso of list) {
+        const key = dayKeyFmt.format(new Date(iso));
+        if (!groups.has(key)) groups.set(key, []);
+        groups.get(key).push(iso);
+      }
+      const sorted = Array.from(groups.entries()).sort(([a],[b]) => a.localeCompare(b));
+      for (const [, times] of sorted) {
+        const day = document.createElement('div');
+        const head = document.createElement('div');
+        head.className = 'slot-day-head';
+        head.innerHTML = '<svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect width="18" height="18" x="3" y="4" rx="2" ry="2"/><line x1="16" x2="16" y1="2" y2="6"/><line x1="8" x2="8" y1="2" y2="6"/><line x1="3" x2="21" y1="10" y2="10"/></svg><span></span>';
+        head.querySelector('span').textContent = dayFmt.format(new Date(times[0]));
+        day.appendChild(head);
+        const grid = document.createElement('div');
+        grid.className = 'slot-grid';
+        for (const iso of times) {
+          const pill = document.createElement('button');
+          pill.type = 'button';
+          pill.className = 'slot-pill';
+          pill.textContent = timeFmt.format(new Date(iso));
+          pill.dataset.iso = iso;
+          pill.addEventListener('click', () => {
+            selected = iso;
+            slotScroll.querySelectorAll('.slot-pill').forEach(b => b.classList.toggle('active', b.dataset.iso === iso));
+            updateCtaState();
+          });
+          grid.appendChild(pill);
+        }
+        day.appendChild(grid);
+        slotScroll.appendChild(day);
+      }
+    }
+
+    // Délègue l'écoute des champs pour activer le CTA
+    states.picking.addEventListener('input', updateCtaState);
+
+    // Soumission → Stripe Checkout
+    states.picking.addEventListener('submit', async (e) => {
+      e.preventDefault();
+      if (ctaBtn.disabled) return;
+      const form = states.picking;
+      const payload = { action: 'checkout', start: selected };
+      ['firstName','lastName','email','phone','company','service','message'].forEach(n => {
+        const el = form.querySelector('[name="'+n+'"]');
+        if (el) payload[n] = el.value.trim();
+      });
+      show('redirecting');
+      try {
+        const res = await fetch(ENDPOINT, {
+          method: 'POST',
+          headers: { 'Content-Type': 'application/json' },
+          body: JSON.stringify(payload),
+        });
+        const data = await res.json().catch(() => ({}));
+        if (res.ok && data && data.ok && data.url) {
+          window.location.href = data.url;
+          return;
+        }
+        const msg = (data && data.error) || "Impossible d'ouvrir le paiement. Réessayez ou écrivez à stella.web@yahoo.com.";
+        if (res.status === 409) {
+          // créneau déjà pris : on revient au choix et on recharge
+          inlineError(msg);
+          selected = null;
+          updateCtaState();
+          show('picking');
+          await loadSlots();
+        } else {
+          showError(msg);
+        }
+      } catch (_) {
+        inlineError("Connexion impossible. Réessayez dans un instant.");
+        show('picking');
+      }
+    });
+
+    async function loadSlots() {
+      try {
+        const res = await fetch(ENDPOINT + '?action=slots', { cache: 'no-store' });
+        if (!res.ok) throw new Error('http');
+        const data = await res.json();
+        if (!data || !data.ok || !Array.isArray(data.slots)) throw new Error('payload');
+        slotsRaw = data.slots;
+        if (sub && typeof data.priceCents === 'number' && data.currency) {
+          sub.textContent = (data.durationMin || 30) + ' min · visio Google Meet · ' + formatPrice(data.priceCents, data.currency);
+        }
+        if (slotsRaw.length === 0) {
+          showError("Aucun créneau disponible pour le moment.");
+          return;
+        }
+        renderSlots(slotsRaw);
+        show('picking');
+      } catch (_) {
+        showError("Impossible de charger les créneaux. Réessayez ou écrivez à stella.web@yahoo.com.");
+      }
+    }
+
+    async function finalize(sid) {
+      show('finalizing');
+      try {
+        const res = await fetch(ENDPOINT + '?action=finalize&session_id=' + encodeURIComponent(sid), { cache: 'no-store' });
+        const data = await res.json().catch(() => ({}));
+        if (res.ok && data && data.ok) {
+          let msg = 'Paiement reçu. Une invitation avec le lien Google Meet vient de vous être envoyée par email.';
+          if (data.start) {
+            const d = new Date(data.start);
+            msg = 'Le ' + dayFmt.format(d) + ' à ' + timeFmt.format(d) + '. ' + msg;
+          }
+          successText.textContent = msg;
+          if (data.joinUrl) {
+            successMeet.href = data.joinUrl;
+            successMeet.style.display = 'inline-flex';
+          }
+          show('success');
+        } else {
+          showError((data && data.error) || "Le paiement n'a pas pu être confirmé. Écrivez à stella.web@yahoo.com.");
+        }
+      } catch(_) {
+        showError("Vérification du paiement impossible. Écrivez à stella.web@yahoo.com.");
+      }
+    }
+
+    function cleanQuery() {
+      const u = new URL(window.location.href);
+      u.searchParams.delete('session_id');
+      u.searchParams.delete('canceled');
+      window.history.replaceState({}, '', u.pathname + u.search + u.hash);
+    }
+
+    const params = new URLSearchParams(window.location.search);
+    const sid = params.get('session_id');
+    const canceled = params.get('canceled');
+
+    if (sid) {
+      cleanQuery();
+      finalize(sid);
+    } else {
+      if (canceled) {
+        cleanQuery();
+        inlineError("Paiement annulé. Aucun créneau n'a été réservé — vous pouvez réessayer.");
+      }
+      loadSlots();
+    }
+  })();
+  </script>
 </section>
 
 <!-- ══ FOOTER ═════════════════════════════════════ -->
